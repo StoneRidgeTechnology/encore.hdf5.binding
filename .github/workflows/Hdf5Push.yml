@@ -29,6 +29,12 @@ jobs :
       uses : actions/setup-node@v1
       with :
         node-version : ${{ matrix.node-version }}
+    - name : "Install hdf5 library"
+      shell : bash
+      run : |
+        wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/bin/hdf5-1.10.5-linux-centos7-x86_64-shared.tar.gz -O /tmp/hdf5-1.10.5.tar.gz
+        tar -zxvf /tmp/hdf5-1.10.5.tar.gz
+        ls hdf5-1.10.5
     # - name : Save npm version
     #   id : getnpmver
     #   run : |
@@ -43,4 +49,4 @@ jobs :
     #   continue-on-error : true
     # - run : npm run node-pre-gyp-build
     # - run : npm test
-    
+
