@@ -22,11 +22,11 @@ HDF5 versions:
 npm add encore.hdf5.binding@delta
 ```
 
-This installation method assumes that you have hdf5 library installed at default path.
+This installation method assumes that you have [HDF5](https://www.hdfgroup.org/HDF5/) library installed at default path.
 
 ## Default path to HDF5 library
 
-The module expects that hdf5 library is installed at:
+The module expects that [HDF5](https://www.hdfgroup.org/HDF5/) library is installed at:
 
 | Platform |       Path       |
 | :------  | :--------------  |
@@ -36,7 +36,7 @@ The module expects that hdf5 library is installed at:
 
 ## How to provide custom path to HDF5 library
 
-If your native hdf5 library is not located on default path you can set the path with a switch on this project as well as
+If your [HDF5](https://www.hdfgroup.org/HDF5/) library installation is not located on default path you can set the path with a switch on this project as well as
 dependent projects:
 
 On Linux:
@@ -57,9 +57,9 @@ On Windows:
 npm add encore.hdf5.binding@delta --hdf5_home_win=<your native hdf path>
 ```
 
-## How to install native hdf5 library
+## How to install HDF5 library
 
-Installation instructions can be found [here](https://github.com/Wandalen/encore.hdf5.install)
+Installation instructions for [HDF5](https://www.hdfgroup.org/HDF5/) library can be found [here](https://github.com/Wandalen/encore.hdf5.install)
 
 ## Prerequisites
 
