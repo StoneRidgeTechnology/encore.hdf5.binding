@@ -18,7 +18,7 @@
   },
   "scripts": {
     "install": "node-gyp rebuild --jobs max",
-    "test": "mocha js/encore/hdf5.test"
+    "test" : "wtest .run 'proto/**' rapidity:-1"
   },
   "contributors": [
     "Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)",
