@@ -6,8 +6,8 @@ require("should");
 const fs            = require('fs');
 const parseString   = require('xml2js').parseString;
 const util          = require('util');
-const hdf5Lib       = require('../hdf5/index.js');
-const globs         = require('../hdf5/globals.js');
+const hdf5Lib       = require('../../hdf5/index.js');
+const globs         = require('../../hdf5/globals.js');
 
 const hdf5          = hdf5Lib.hdf5;
 const h5lt          = hdf5Lib.h5lt;
@@ -405,13 +405,13 @@ describe("testing lite interface ", function() {
             const groupDocuments      = file.createGroup('pmcservices/sodium-icosanoate/Documents');
             const groupFrequencyData  = file.createGroup('pmcservices/sodium-icosanoate/Frequency Data');
             const groupTrajectories   = file.createGroup('pmcservices/sodium-icosanoate/Trajectories');
-            const sodiumIcosanoateXml = fs.readFileSync("./js/encore/hdf5.test/examples/sodium-icosanoate.xml", "ascii");
+            const sodiumIcosanoateXml = fs.readFileSync("./js/encore/hdf5.test/mocha/examples/sodium-icosanoate.xml", "ascii");
             h5lt.makeDataset(groupDocuments.id, 'sodium-icosanoate.xml', sodiumIcosanoateXml);
             groupTrajectories.close();
             groupFrequencyData.close();
             groupDocuments.close();
 
-            const sodiumIcosanoateXmol = fs.readFileSync("./js/encore/hdf5.test/examples/sodium-icosanoate.xmol", "ascii");
+            const sodiumIcosanoateXmol = fs.readFileSync("./js/encore/hdf5.test/mocha/examples/sodium-icosanoate.xmol", "ascii");
             let count              = 0;
             let numberOfDataLines;
             let title;
@@ -885,7 +885,7 @@ describe("testing lite interface ", function() {
     describe("varlen chars", function() {
         let file;
         before(function(done) {
-          file = new hdf5.File('./js/encore/hdf5.test/examples/nba.h5', Access.ACC_RDONLY);
+          file = new hdf5.File('./js/encore/hdf5.test/mocha/examples/nba.h5', Access.ACC_RDONLY);
           done();
         });
         it("read varlen's", function(done) {

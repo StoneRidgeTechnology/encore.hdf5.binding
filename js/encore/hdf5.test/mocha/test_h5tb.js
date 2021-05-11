@@ -1,8 +1,8 @@
 'use strict';
 require("should");
 
-const hdf5Lib       = require('../hdf5/index.js');
-const globs         = require('../hdf5/globals.js');
+const hdf5Lib       = require('../../hdf5/index.js');
+const globs         = require('../../hdf5/globals.js');
 
 const hdf5          = hdf5Lib.hdf5;
 const h5tb          = hdf5Lib.h5tb;

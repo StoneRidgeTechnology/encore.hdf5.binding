@@ -4,8 +4,8 @@
 require('should');
 
 
-const hdf5Lib       = require('../hdf5/index.js');
-const globs         = require('../hdf5/globals.js');
+const hdf5Lib       = require('../../hdf5/index.js');
+const globs         = require('../../hdf5/globals.js');
 
 describe("testing c interface ", function() {
 
@@ -140,12 +140,12 @@ describe("testing c interface ", function() {
         it("should stop on broken h5", function(done) {
             try{
               console.log("stop on broken");
-              hdf5Lib.hdf5.isHDF5('./js/encore/hdf5.test/examples/broken.h5').should.equal(true);
-              var file = new hdf5Lib.hdf5.File('./js/encore/hdf5.test/examples/broken.h5', globs.Access.ACC_RDONLY);
+              hdf5Lib.hdf5.isHDF5('./js/encore/hdf5.test/mocha/examples/broken.h5').should.equal(true);
+              var file = new hdf5Lib.hdf5.File('./js/encore/hdf5.test/mocha/examples/broken.h5', globs.Access.ACC_RDONLY);
               file.close();
             }catch(error){
               //console.error(error);
-              error.message.should.equal("Failed to open file, ./js/encore/hdf5.test/examples/broken.h5 and flags 0 with return: -1.");
+              error.message.should.equal("Failed to open file, ./js/encore/hdf5.test/mocha/examples/broken.h5 and flags 0 with return: -1.");
             }
             done();
         });
