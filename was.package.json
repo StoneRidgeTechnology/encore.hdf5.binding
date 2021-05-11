@@ -1,34 +1,33 @@
 {
-  "name": "encore.hdf5.binding",
-  "version": "0.3.0",
-  "description": "Binding of HDF5",
-  "main": "./js/encore/hdf5/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Wandalen/encore.hdf5.binding.git"
+  "name" : "encore.hdf5.binding",
+  "version" : "0.3.3",
+  "description" : "Binding of HDF5",
+  "main" : "./js/encore/hdf5/index.js",
+  "repository" :
+  {
+    "type" : "git",
+    "url" : "https://github.com/Wandalen/encore.hdf5.binding.git"
   },
-  "engines": {
-    "node": ">=10.0.0"
+  "engines" : { "node" : ">=10.0.0" },
+  "devDependencies" :
+  {
+    "mocha" : "8.1.1",
+    "should" : "13.2.3",
+    "xml2js" : "0.4.23",
+    "wTesting" : ""
   },
-  "devDependencies": {
-    "mocha": "8.1.1",
-    "should": "13.2.3",
-    "xml2js": "0.4.23",
-    "wTesting": ""
-  },
-  "scripts": {
-    "install": "node-gyp rebuild --jobs max",
-    "test" : "wtest .run 'proto/**' rapidity:-1"
-  },
-  "contributors": [
+  "scripts" : { "install" : "node-gyp rebuild --jobs max", "test" : "wtest .run 'proto/**' rapidity:-1" },
+  "contributors" :
+  [
     "Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)",
     "Roger I Martin <mathmldashx@yahoo.com> (https://github.com/rimmartin/)",
     "Kostiantyn Wandalen <wanalen@01.school>",
     "Volodymyr M. <volodymyr.migdal@gmail.com>"
   ],
-  "license": "MIT",
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/Wandalen/encore.hdf5.binding/issues"
+  "license" : "MIT",
+  "keywords" : [],
+  "bugs" :
+  {
+    "url" : "https://github.com/Wandalen/encore.hdf5.binding/issues"
   }
 }
