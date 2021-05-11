@@ -42,30 +42,213 @@ function onSuiteEnd( test )
 
 //
 
-function runMochaTests( test )
+function attributes( test )
 {
   let context = this;
   let ready = __.Consequence();
 
-  let Mocha = require('mocha');
+  let Mocha = require( 'mocha' );
   var mocha = new Mocha();
 
-  let testDir = __.path.join( __dirname, 'mocha', '**.js' );
-  let testFiles = __.fileProvider.filesFind
-  ({
-    filePath : testDir,
-    outputFormat : 'absolute',
-    filter :
-    {
-      recursive : 2
-    }
-  })
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_attributes.js' );
 
-  testFiles.forEach( ( file ) => mocha.addFile( __.path.nativize( file ) ) );
+  mocha.addFile( __.path.nativize( testFilePath ) )
 
   mocha.run( ( fails ) =>
   {
-    test.case = 'testing finished without fails';
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function filters( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_filters.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function h5ds( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_h5ds.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function h5im( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_h5im.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function h5lt( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_h5lt.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function h5pt( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_h5pt.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function h5tb( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_h5tb.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function hdf5( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_hdf5.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
+    test.identical( fails, 0 );
+    ready.take( fails )
+  });
+
+  return ready;
+}
+
+//
+
+function swmr( test )
+{
+  let context = this;
+  let ready = __.Consequence();
+
+  let Mocha = require( 'mocha' );
+  var mocha = new Mocha();
+
+  let testFilePath = __.path.join( __dirname, 'mocha', 'test_swmr.js' );
+
+  mocha.addFile( __.path.nativize( testFilePath ) )
+
+  mocha.run( ( fails ) =>
+  {
+    test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
   });
@@ -95,7 +278,15 @@ const Proto =
 
   tests :
   {
-    runMochaTests
+    attributes,
+    filters,
+    h5ds,
+    h5im,
+    h5lt,
+    h5pt,
+    h5tb,
+    hdf5,
+    swmr
   },
 
 }
