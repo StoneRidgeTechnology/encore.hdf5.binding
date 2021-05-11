@@ -3,8 +3,8 @@
 (require('mocha'));
 require("should");
 
-const hdf5Lib = require('..');
-const Access  = require('../lib/globals.js').Access;
+const hdf5Lib = require('../hdf5/index.js');
+const Access  = require('../hdf5/globals.js').Access;
 
 describe("testing images ",function() {
     const hdf5   = hdf5Lib.hdf5;
@@ -18,7 +18,7 @@ describe("testing images ",function() {
         before(function(done) {
             try {
             file  = new hdf5.File('./h5im.h5', Access.ACC_TRUNC);
-            file2 = new hdf5.File('./test/examples/hdf5.h5', Access.ACC_RDONLY);
+            file2 = new hdf5.File('./js/encore/hdf5.test/examples/hdf5.h5', Access.ACC_RDONLY);
             image = h5im.readImage(file2.id, 'hdf_logo.jpg');
             } catch(err) {
                 err.message.should.equal("");

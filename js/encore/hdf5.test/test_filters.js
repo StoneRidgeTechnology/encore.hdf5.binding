@@ -3,8 +3,8 @@
 (require('mocha'));
 require('should');
 
-const hdf5Lib = require('..');
-const globs   = require('../lib/globals');
+const hdf5Lib = require('../hdf5/index.js');
+const globs   = require('../hdf5/globals.js');
 
 describe("testing fiter interface ",function(){
 

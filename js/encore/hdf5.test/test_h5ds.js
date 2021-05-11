@@ -3,8 +3,8 @@
 (require('mocha'));
 require('should');
 
-const hdf5Lib = require('..');
-const globs   = require('../lib/globals');
+const hdf5Lib = require('../hdf5/index.js');
+const globs   = require('../hdf5/globals.js');
 const hdf5    = hdf5Lib.hdf5;
 const h5lt    = hdf5Lib.h5lt;
 const h5ds    = hdf5Lib.h5ds;

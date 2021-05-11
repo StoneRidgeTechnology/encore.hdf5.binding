@@ -3,8 +3,8 @@
 (require('mocha'));
 require('should');
 
-const hdf5Lib = require('..');
-const globs   = require('../lib/globals');
+const hdf5Lib = require('../hdf5/index.js');
+const globs   = require('../hdf5/globals');
 const H5RType        = globs.H5RType;
 const hdf5          = hdf5Lib.hdf5;
 const h5lt          = hdf5Lib.h5lt;
@@ -103,7 +103,7 @@ describe("testing attribute interface",function(){
             group.close();
             done();
         });
-        
+
         it("should create and delete attribute via delete", function(done) {
             const group   = file.openGroup('pmc/refinement');
             group.refresh();
@@ -121,7 +121,7 @@ describe("testing attribute interface",function(){
             group.close();
             done();
         });
-        
+
         after(function(done){
             file.close();
             done();
@@ -149,7 +149,7 @@ describe("testing attribute interface",function(){
             file.flush();
             done();
         });
-        
+
         it("should be attribute info ", function(done) {
             console.log(file);
             console.log(file.getNumAttrs());
@@ -248,7 +248,7 @@ describe("testing attribute interface",function(){
 //              }
             });
             console.dir(attrText);
-            
+
             group.close();
             done();
         });
@@ -318,7 +318,7 @@ describe("testing attribute interface",function(){
                 options.rows.should.equal(10);
                 options.columns.should.equal(1);
             });
-            
+
             group.close();
           }
           catch (e) {
@@ -354,7 +354,7 @@ describe("testing attribute interface",function(){
         it("32 bit floating attr", function(done) {
             var scale_factor = file.getDatasetAttribute("group_energy", "scale_factor");
             console.dir(scale_factor);
-            
+
             var attrs = file.getDatasetAttributes("group_energy");
             var attrText = "";
             Object.getOwnPropertyNames(attrs).forEach(function(val, idx, array) {
