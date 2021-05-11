@@ -80,7 +80,6 @@ path :
   js: ./js
   export: '{path::js}/**'
   doc: ./doc
-  js: js
   cpp: cpp
   build: build
   binding: binding
