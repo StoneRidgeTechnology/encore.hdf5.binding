@@ -69,7 +69,7 @@ Note: If node-gyp isn't installed
 npm install -g node-gyp
 ```
 
-## Example
+## Try out
 
 ```javascript
 var path = require( 'path' );
