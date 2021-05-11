@@ -1,10 +1,15 @@
-[![NPM Version][npm-image]][npm-url]
+<!-- [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][npm-url]
-[![Node.js Version][node-version-image]][node-version-url]
-[![Build Status][travis-ci-build-image]][travis-ci-build-url]
+[![Node.js Version][node-version-image]][node-version-url] -->
+
+# module::encore.hdf5.binding  [![status](https://github.com/Wandalen/encore.hdf5.binding/workflows/publish/badge.svg)](https://github.com/Wandalen/encore.hdf5.binding/actions?query=workflow%3Apublish) [![stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)](https://github.com/emersion/stability-badges#stable)
 
 HDF5 is a node module for reading and writing the 
 [HDF5](https://www.hdfgroup.org/HDF5/) file format.
+
+## About this fork
+
+This fork is created to provide prebuild versions of the library. [Original repository](https://github.com/HDF-NI/hdf5.node)
 
 ## Documentation
 
