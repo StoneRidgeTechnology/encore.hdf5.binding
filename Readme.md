@@ -1,7 +1,6 @@
 # module::encore.hdf5.binding  [![status](https://github.com/Wandalen/encore.hdf5.binding/workflows/publish/badge.svg)](https://github.com/Wandalen/encore.hdf5.binding/actions?query=workflow%3Apublish) [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental)
 
-This is binding for
-[HDF5](https://www.hdfgroup.org/HDF5/).
+This is binding for [HDF5](https://www.hdfgroup.org/HDF5/).
 
 ## About the fork
 
@@ -20,7 +19,7 @@ HDF5 versions:
 ## How to add to your project
 
 ```bash
-npm add encore.hdf5.binding
+npm add encore.hdf5.binding@delta
 ```
 
 This installation method assumes that you have hdf5 library installed at default path.
@@ -43,7 +42,7 @@ dependent projects:
 On Linux:
 
 ```bash
-npm add encore.hdf5.binding --hdf5_home_linux=<your native hdf path>
+npm add encore.hdf5.binding@delta --hdf5_home_linux=<your native hdf path>
 ```
 
 On Mac:

@@ -1,7 +1,7 @@
 {
   "name": "encore.hdf5.binding",
-  "version": "0.4.0",
-  "description": "Native Abstractions for hdf5 file io",
+  "version": "0.3.0",
+  "description": "Binding of HDF5",
   "main": "./js/encore/hdf5/index.js",
   "repository": {
     "type": "git",
