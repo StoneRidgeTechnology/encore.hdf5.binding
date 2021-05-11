@@ -31,7 +31,11 @@ namespace NodeHDF5 {
         return false;
       }
 
-      return options->Get(context, name).ToLocalChecked()->BooleanValue(isolate);
+      #if NODE_VERSION_AT_LEAST( 12, 0, 0 )
+        return options->Get(context, name).ToLocalChecked()->BooleanValue(isolate);
+      #else
+        return options->Get(context, name).ToLocalChecked()->BooleanValue(context).ToChecked();
+      #endif
     };
 
   Persistent<Function> Filters::Constructor;
@@ -163,7 +167,7 @@ namespace NodeHDF5 {
           idWrap->value          = group->id;
           v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), instance);
           if(ret.ToChecked()){
-            
+
           }
         }
         else{
@@ -176,7 +180,7 @@ namespace NodeHDF5 {
           idWrap->value          = group->id;
           v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), instance);
           if(ret.ToChecked()){
-            
+
           }
         }
 
@@ -186,7 +190,7 @@ namespace NodeHDF5 {
         idWrap->value          = -1;
         v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), instance);
         if(ret.ToChecked()){
-          
+
         }
       }
     } catch (std::exception& ex) {
@@ -287,7 +291,7 @@ namespace NodeHDF5 {
         // attach various properties
         v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), instance);
         if(ret.ToChecked()){
-          
+
         }
         created = true;
       }
@@ -314,7 +318,7 @@ namespace NodeHDF5 {
       // attach various properties
       v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), instance);
       if(ret.ToChecked()){
-        
+
       }
       created = true;
     }
@@ -400,7 +404,7 @@ namespace NodeHDF5 {
     // attach various properties
     v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), instance);
     if(ret.ToChecked()){
-      
+
     }
   }
 

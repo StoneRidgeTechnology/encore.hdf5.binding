@@ -33,7 +33,7 @@ namespace NodeHDF5 {
       setPrototypeMethod(isolate, tpl, v8::String::NewFromUtf8(isolate, "close", v8::NewStringType::kInternalized).ToLocalChecked(), close);
 
       Constructor.Reset(v8::Isolate::GetCurrent(), tpl->GetFunction(context).ToLocalChecked());
-      exports->Set(context, v8::String::NewFromUtf8(isolate, "PacketTable", v8::NewStringType::kInternalized).ToLocalChecked(), tpl->GetFunction(context).ToLocalChecked()).Check();
+      exports->Set(context, v8::String::NewFromUtf8(isolate, "PacketTable", v8::NewStringType::kInternalized).ToLocalChecked(), tpl->GetFunction(context).ToLocalChecked()).ToChecked();
     }
 
     static Local<Object> Instantiate(hid_t packetId, int nmembers) {
@@ -86,9 +86,9 @@ namespace NodeHDF5 {
       for (unsigned int index = 0; index < obj->nmembers; index++) {
         record->Set(context,
             args.This()->Get(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "record", v8::NewStringType::kNormal).ToLocalChecked()).ToLocalChecked()->ToObject(context).ToLocalChecked()->GetOwnPropertyNames(context).ToLocalChecked()->Get(context, index).ToLocalChecked(),
-            String::NewFromUtf8(v8::Isolate::GetCurrent(), obj->p_data[index], v8::NewStringType::kNormal).ToLocalChecked()).Check();
+            String::NewFromUtf8(v8::Isolate::GetCurrent(), obj->p_data[index], v8::NewStringType::kNormal).ToLocalChecked()).ToChecked();
       }
-      args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "record", v8::NewStringType::kInternalized).ToLocalChecked(), record).Check();
+      args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "record", v8::NewStringType::kInternalized).ToLocalChecked(), record).ToChecked();
       args.GetReturnValue().Set(true);
     }
 
@@ -138,9 +138,9 @@ namespace NodeHDF5 {
 
       // append this function to the target object
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "makeTable", v8::NewStringType::kInternalized).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5pt::make_table)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5pt::make_table)->GetFunction(context).ToLocalChecked()).ToChecked();
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "readTable", v8::NewStringType::kInternalized).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5pt::read_table)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5pt::read_table)->GetFunction(context).ToLocalChecked()).ToChecked();
     }
 
     static void make_table(const v8::FunctionCallbackInfo<Value>& args) {
@@ -228,10 +228,10 @@ namespace NodeHDF5 {
             hid_t memberType = H5Tget_member_type(type, memberIndex);
             if (H5Tis_variable_str(memberType)>0) {
               record->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), H5Tget_member_name(type, memberIndex), v8::NewStringType::kInternalized).ToLocalChecked(),
-                          String::NewFromUtf8(v8::Isolate::GetCurrent(), "huh", v8::NewStringType::kInternalized).ToLocalChecked()).Check();
+                          String::NewFromUtf8(v8::Isolate::GetCurrent(), "huh", v8::NewStringType::kInternalized).ToLocalChecked()).ToChecked();
             } else {
               record->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), H5Tget_member_name(type, memberIndex), v8::NewStringType::kInternalized).ToLocalChecked(),
-                          String::NewFromUtf8(v8::Isolate::GetCurrent(), "huh2", v8::NewStringType::kInternalized).ToLocalChecked()).Check();
+                          String::NewFromUtf8(v8::Isolate::GetCurrent(), "huh2", v8::NewStringType::kInternalized).ToLocalChecked()).ToChecked();
             }
             H5Tclose(memberType);
           }
@@ -241,8 +241,8 @@ namespace NodeHDF5 {
       }
 
       v8::Local<v8::Object>&& pt = PacketTable::Instantiate(packetTableID, nmembers);
-      pt->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "nrecords", v8::NewStringType::kInternalized).ToLocalChecked(), Uint32::New(v8::Isolate::GetCurrent(), nrecords)).Check();
-      pt->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "record", v8::NewStringType::kInternalized).ToLocalChecked(), record).Check();
+      pt->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "nrecords", v8::NewStringType::kInternalized).ToLocalChecked(), Uint32::New(v8::Isolate::GetCurrent(), nrecords)).ToChecked();
+      pt->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "record", v8::NewStringType::kInternalized).ToLocalChecked(), record).ToChecked();
       args.GetReturnValue().Set(pt);
     }
   };

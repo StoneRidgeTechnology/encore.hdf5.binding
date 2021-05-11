@@ -20,7 +20,7 @@ namespace NodeHDF5 {
     v8::Isolate* isolate = info.GetIsolate();
       //info.GetReturnValue().Set(v8::PropertyAttribute::DontDelete);
      v8::String::Utf8Value attribute_name(isolate, property->ToString(v8::Isolate::GetCurrent()->GetCurrentContext()).ToLocalChecked());
-        
+
         // unwrap group
         Methods* group       = ObjectWrap::Unwrap<Methods>(info.This());
         if(H5Aexists(group->id, (const char*)*attribute_name)){
@@ -80,8 +80,13 @@ namespace NodeHDF5 {
     if(!H5Aexists(group->id, (const char*)*attribute_name)){
         std::stringstream ss;
       ss<<"Attribute '"<<(*attribute_name)<<"' does not exist.";
-      v8::Isolate::GetCurrent()->ThrowException(
-          v8::Exception::Error(v8::String::NewFromUtf8(v8::Isolate::GetCurrent(), ss.str().c_str()).ToLocalChecked()));
+      #if NODE_VERSION_AT_LEAST( 13, 0, 0 )
+        v8::Isolate::GetCurrent()->ThrowException(
+            v8::Exception::Error(v8::String::NewFromUtf8(v8::Isolate::GetCurrent(), ss.str().c_str()).ToLocalChecked()));
+      #else
+        v8::Isolate::GetCurrent()->ThrowException(
+            v8::Exception::Error(v8::String::NewFromUtf8(v8::Isolate::GetCurrent(), ss.str().c_str())));
+      #endif
       args.GetReturnValue().SetUndefined();
       return;
     }
@@ -110,9 +115,9 @@ namespace NodeHDF5 {
     if(H5Aexists(group->id, (const char*)*attribute_name)){
         /*herr_t err =*/ H5Adelete(group->id, (const char*)*attribute_name);
     }
-    
+
   }
-  
+
   void Methods::GetNumObjs(const v8::FunctionCallbackInfo<v8::Value>& args) {
     // unwrap group
     Methods*   group = ObjectWrap::Unwrap<Methods>(args.This());
@@ -469,7 +474,7 @@ namespace NodeHDF5 {
                 else{
                   v8::Maybe<bool> ret = array->Set(context, mIndex,
                              v8::Int32::New(v8::Isolate::GetCurrent(), ((float*)(buf.get() + H5Tget_member_offset(attr_type, mIndex)))[0]));
-                  
+
                   if(ret.ToChecked()){};
                 }
               } break;
@@ -719,7 +724,7 @@ namespace NodeHDF5 {
       args.GetReturnValue().SetUndefined();
       return;
     }
-        
+
       hid_t attr_id = H5Aopen_by_name(group->id, *dset_name, *attr_name, H5P_DEFAULT, H5P_DEFAULT);
       if (attr_id < 0) {
         v8::Isolate::GetCurrent()->ThrowException(
@@ -813,7 +818,7 @@ namespace NodeHDF5 {
                   v8::Maybe<bool> ret = array->Set(context, mIndex,
                              v8::Number::New(v8::Isolate::GetCurrent(), ((float*)(buf.get() + H5Tget_member_offset(attr_type, mIndex)))[0]));
                   if(ret.ToChecked()){};
-                  
+
                 }
               } break;
               case H5T_VLEN: break;
@@ -898,7 +903,7 @@ namespace NodeHDF5 {
             float value;
             H5Aread(attr_id, attr_type, &value);
             args.GetReturnValue().Set(v8::Number::New(v8::Isolate::GetCurrent(), value));
-            
+
           }
         } break;
         case H5T_VLEN: {
@@ -1114,7 +1119,7 @@ namespace NodeHDF5 {
                                         v8::MaybeLocal<v8::Value> ret = ((v8::Local<v8::Function>*)op_data)[0]->Call(
                                             v8::Isolate::GetCurrent()->GetCurrentContext(), v8::Null(v8::Isolate::GetCurrent()), 3, argv);
                                         if(!ret.IsEmpty() && ret.ToLocalChecked()->IsNumber()){
-                                            
+
                                         }
                                         return (herr_t)0;
                                       },
@@ -1156,7 +1161,7 @@ namespace NodeHDF5 {
                                         v8::MaybeLocal<v8::Value> ret = ((v8::Local<v8::Function>*)op_data)[0]->Call(
                                             v8::Isolate::GetCurrent()->GetCurrentContext(), v8::Null(v8::Isolate::GetCurrent()), 2, argv);
                                         if(!ret.IsEmpty() && ret.ToLocalChecked()->IsNumber()){
-                                            
+
                                         }
                                         return (herr_t)0;
                                       },

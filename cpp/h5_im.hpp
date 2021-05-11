@@ -22,17 +22,17 @@ namespace NodeHDF5 {
 
       // append this function to the target object
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "makeImage", v8::NewStringType::kNormal).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::make_image)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::make_image)->GetFunction(context).ToLocalChecked()).ToChecked();
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "readImage", v8::NewStringType::kNormal).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::read_image)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::read_image)->GetFunction(context).ToLocalChecked()).ToChecked();
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "readImageRegion", v8::NewStringType::kNormal).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::read_image_region)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::read_image_region)->GetFunction(context).ToLocalChecked()).ToChecked();
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "isImage", v8::NewStringType::kNormal).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::is_image)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::is_image)->GetFunction(context).ToLocalChecked()).ToChecked();
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "getImageInfo", v8::NewStringType::kNormal).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::get_image_info)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::get_image_info)->GetFunction(context).ToLocalChecked()).ToChecked();
       exports->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "makePalette", v8::NewStringType::kNormal).ToLocalChecked(),
-                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::make_palette)->GetFunction(context).ToLocalChecked()).Check();
+                  FunctionTemplate::New(v8::Isolate::GetCurrent(), H5im::make_palette)->GetFunction(context).ToLocalChecked()).ToChecked();
     }
 
     static void get_height(v8::Local<v8::Object> options, std::function<void(hid_t)> cb) {
@@ -41,42 +41,42 @@ namespace NodeHDF5 {
       if (options.IsEmpty()) {
         return;
       }
-      
+
       auto name(String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked());
 
       if (options->HasOwnProperty(v8::Isolate::GetCurrent()->GetCurrentContext(), name).FromJust()) {
         cb((hsize_t)options->Get(context, name).ToLocalChecked()->Uint32Value(context).ToChecked());
       }
     }
-    
+
     static void get_width(v8::Local<v8::Object> options, std::function<void(hsize_t)> cb) {
       v8::Isolate* isolate = v8::Isolate::GetCurrent();
       v8::Local<v8::Context> context = isolate->GetCurrentContext();
       if (options.IsEmpty()) {
         return;
       }
-      
+
       auto name(String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked());
 
       if (options->HasOwnProperty(v8::Isolate::GetCurrent()->GetCurrentContext(), name).FromJust()) {
         cb((hsize_t)options->Get(context, name).ToLocalChecked()->Uint32Value(context).ToChecked());
       }
     }
-    
+
     static void get_planes(v8::Local<v8::Object> options, std::function<void(hsize_t)> cb) {
       v8::Isolate* isolate = v8::Isolate::GetCurrent();
       v8::Local<v8::Context> context = isolate->GetCurrentContext();
       if (options.IsEmpty()) {
         return;
       }
-      
+
       auto name(String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked());
 
       if (options->HasOwnProperty(v8::Isolate::GetCurrent()->GetCurrentContext(), name).FromJust()) {
         cb((hsize_t)options->Get(context, name).ToLocalChecked()->Uint32Value(context).ToChecked());
       }
     }
-    
+
     static void make_image(const v8::FunctionCallbackInfo<Value>& args) {
       v8::Isolate* isolate = args.GetIsolate();
       v8::Local<v8::Context> context = isolate->GetCurrentContext();
@@ -95,17 +95,17 @@ namespace NodeHDF5 {
         Local<Value> heightValue = buffer->Get(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked()).ToLocalChecked();
         dims[0]                   = heightValue->Int32Value(context).ToChecked();
       }
-      else get_height(options, [&](int _height){dims[0]=_height;});      
+      else get_height(options, [&](int _height){dims[0]=_height;});
       if (buffer->Has(context, String::NewFromUtf8(isolate, "width", v8::NewStringType::kInternalized).ToLocalChecked()).ToChecked()) {
         Local<Value> widthValue = buffer->Get(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked()).ToLocalChecked();
         dims[1]                   = widthValue->Int32Value(context).ToChecked();
       }
-      else get_width(options, [&](int _width){dims[1]=_width;});      
+      else get_width(options, [&](int _width){dims[1]=_width;});
       if (buffer->Has(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kInternalized).ToLocalChecked()).ToChecked()) {
         Local<Value> planesValue = buffer->Get(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kInternalized).ToLocalChecked()).ToLocalChecked();
         dims[2]                   = planesValue->Int32Value(context).ToChecked();
       }
-      else get_planes(options, [&](int _planes){dims[2]=_planes;});      
+      else get_planes(options, [&](int _planes){dims[2]=_planes;});
       Int64* idWrap = ObjectWrap::Unwrap<Int64>(args[0]->ToObject(context).ToLocalChecked());
      err           = H5LTmake_dataset(idWrap->Value(), *dset_name, 3, dims, H5T_NATIVE_UCHAR, (const char*)node::Buffer::Data(args[2]));
       if (err < 0) {
@@ -159,11 +159,11 @@ namespace NodeHDF5 {
           const unsigned               argc = 1;
           v8::Persistent<v8::Function> callback(v8::Isolate::GetCurrent(), args[args.Length()-1].As<Function>());
           v8::Local<v8::Object> options = v8::Object::New(v8::Isolate::GetCurrent());
-          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), width)).Check();
-          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), height)).Check();
-          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), planes)).Check();
-          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).Check();
-          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), npals)).Check();
+          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), width)).ToChecked();
+          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), height)).ToChecked();
+          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), planes)).ToChecked();
+          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).ToChecked();
+          options->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), v8::Number::New(v8::Isolate::GetCurrent(), npals)).ToChecked();
           v8::Local<v8::Value> argv[1] = {options};
           v8::MaybeLocal<v8::Value> ret=v8::Local<v8::Function>::New(v8::Isolate::GetCurrent(), callback)
               ->Call(v8::Isolate::GetCurrent()->GetCurrentContext(), v8::Null(v8::Isolate::GetCurrent()), argc, argv);
@@ -171,11 +171,11 @@ namespace NodeHDF5 {
 
           }
         } else{
-          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), width)).Check();
-          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), height)).Check();
-          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), planes)).Check();
-          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).Check();
-          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), npals)).Check();
+          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), width)).ToChecked();
+          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), height)).ToChecked();
+          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), planes)).ToChecked();
+          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).ToChecked();
+          buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), npals)).ToChecked();
         }
 
       args.GetReturnValue().Set(buffer);
@@ -280,11 +280,11 @@ namespace NodeHDF5 {
       v8::Local<v8::Object> buffer =
           node::Buffer::Copy(v8::Isolate::GetCurrent(), (char*)contentBuffer.get(), planes * count.get()[0] * count.get()[1])
               .ToLocalChecked();
-      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), count.get()[0])).Check();
-      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), count.get()[1])).Check();
-      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), planes)).Check();
-      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).Check();
-      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), npals)).Check();
+      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), count.get()[0])).ToChecked();
+      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), count.get()[1])).ToChecked();
+      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), planes)).ToChecked();
+      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).ToChecked();
+      buffer->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), npals)).ToChecked();
 
       args.GetReturnValue().Set(buffer);
     }
@@ -318,11 +318,11 @@ namespace NodeHDF5 {
         return;
       }
       v8::Local<v8::Object> attrs = v8::Object::New(v8::Isolate::GetCurrent());
-      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), width)).Check();
-      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), height)).Check();
-      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), planes)).Check();
-      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).Check();
-      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), npals)).Check();
+      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "width", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), width)).ToChecked();
+      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "height", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), height)).ToChecked();
+      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "planes", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), planes)).ToChecked();
+      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "interlace", v8::NewStringType::kNormal).ToLocalChecked(), String::NewFromUtf8(v8::Isolate::GetCurrent(), interlace, v8::NewStringType::kNormal).ToLocalChecked()).ToChecked();
+      attrs->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "npals", v8::NewStringType::kNormal).ToLocalChecked(), Number::New(v8::Isolate::GetCurrent(), npals)).ToChecked();
 
       args.GetReturnValue().Set(attrs);
     }
