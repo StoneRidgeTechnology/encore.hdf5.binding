@@ -128,7 +128,7 @@ path :
       raw: compiled
       content: prime
   npm.proto.entry:
-    - ./index.js
+    - ./js/encore/hdf5/index.js
 
   repository : git+https://github.com/Wandalen/encore.hdf5.binding.git
   origins :

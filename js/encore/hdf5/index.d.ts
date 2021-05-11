@@ -2,7 +2,7 @@
 // Project: https://github.com/HDF-NI/hdf5.node#readme
 // Definitions by: NINI1988 <https://github.com/NINI1988>
 
-import { Access, H5OType, HLType, H5Type, H5TOrder, H5SType } from "hdf5/lib/globals";
+import { Access, H5OType, HLType, H5Type, H5TOrder, H5SType } from "globals";
 
 /// <reference types="node" />
 
@@ -27,7 +27,7 @@ export declare namespace hdf5 {
         public id: hdf5.Id;
 
         /**
-         * 
+         *
          * @param xpath  the path to the group to open. Delimited with / and will throw an exception if it doesn’t exist. Useful particularly in read only mode
          * @returns the opened group object
          */
@@ -39,7 +39,7 @@ export declare namespace hdf5 {
         public refresh(): void;
 
         /**
-         * 
+         *
          * @param source the name of the source group
          * @param id the group or file id location. Every group and the file return with an id attribute. In this case it is the destination’s future location. If it is the file’s id this essentially renames the source
          * @param destination the name of the destination group.
@@ -52,7 +52,7 @@ export declare namespace hdf5 {
         public getNumAttrs(): number;
 
         /**
-         * 
+         *
          * @param name  the name of the group to delete. An apprehensive activity with an h5 file but sometimes it is necessary
          */
         public delete(name: string): void;
@@ -92,35 +92,35 @@ export declare namespace hdf5 {
         public getDatasetType(name: string): HLType;
 
         /**
-         * 
+         *
          * @param name the name of the child dataset
          * @returns an array of length dataset rank and entries for the length of each dimension
          */
         public getDatasetDimensions(name: string): number[];
 
         /**
-         * 
+         *
          * @param name the name of the child
          * @returns the type according to H5Type. Useful when working with h5 in general and programmatically would like to prepare for particular data type
          */
         public getDataType(name: string): H5Type;
 
         /**
-         * 
+         *
          * @param name the name of the child dataset
          * @returns object with attributes
          */
         public getDatasetAttributes(name: string): object;
 
         /**
-         * 
-         * @param name 
+         *
+         * @param name
          * @returns a Filters object for accessing the dataset’s filters
          */
         public getFilters(name: string): Filters;
 
         /**
-         * 
+         *
          * @param idx unused starting over index
          * @param callback synchronous callback function returning H5Type and name
          */
@@ -128,7 +128,7 @@ export declare namespace hdf5 {
         // public iterate(idx: number, callback: (type: H5Type, name: string) => void): void;
 
         /**
-         * 
+         *
          * @param idx unused starting over index
          * @param callback synchronous callback function returning H5Type and xpath
          */
@@ -146,14 +146,14 @@ export declare namespace hdf5 {
         public enableSingleWriteMumltiRead(): void;
 
         /**
-         * 
+         *
          * @param xpath the path to the group to create. Delimited with / and if any group along the stem doesn’t exist creates it too
          * @returns the new group object
          */
         public createGroup(xpath: string): Group;
 
         /**
-         * 
+         *
          * @param name the name of the child dataset
          */
         public getByteOrder(name: string): H5TOrder;
@@ -163,21 +163,21 @@ export declare namespace hdf5 {
     class Group extends Methods {
 
         /**
-         * 
+         *
          * @param xpath the path to the group to create. Delimited with / and if any group along the stem doesn’t exist creates it too
          * @returns the new group object
          */
         public create(xpath: string): Group;
 
         /**
-         * 
+         *
          * @param xpath  the path to the group to open. Delimited with / and will throw an exception if it doesn’t exist. Useful particularly in read only mode
          * @returns the opened group object
          */
         public open(xpath: string): Group;
 
         /**
-         * 
+         *
          * @param source the name of the source group
          * @param id the group or file id location. Every group and the file return with an id attribute. In this case it is the destination’s future location
          * @param destination the name of the destination group
@@ -185,7 +185,7 @@ export declare namespace hdf5 {
         public copy(source: string, id: hdf5.Id, destination: string): void;
 
         /**
-         * 
+         *
          * @param source the name of the source group
          * @param id the group or file id location.Every group and the file return with an id attribute.In this case it is the destination’s future location
          * @param destination the name of the destination group
@@ -260,14 +260,14 @@ export declare namespace h5lt {
     }
 
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @param buffer Typed array, string or a node::Buffer. The buffer can have attributes describing its shape. When using a node::Buffer the data is expected to be homogeneous and the type attribute set to choice in H5Type
      */
     function makeDataset(id: hdf5.Id, name: string, buffer: TypedArray | string | Buffer): void;
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @param buffer Typed array, string or a node::Buffer. The buffer can have attributes describing its shape. When using a node::Buffer the data is expected to be homogeneous and the type attribute set to choice in H5Type
@@ -275,7 +275,7 @@ export declare namespace h5lt {
      */
     function makeDataset(id: hdf5.Id, name: string, buffer: TypedArray | string, options: MakeDatasetOptions): void;
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @param buffer Typed array, string or a node::Buffer. The buffer can have attributes describing its shape. When using a node::Buffer the data is expected to be homogeneous and the type attribute set to choice in H5Type
@@ -284,14 +284,14 @@ export declare namespace h5lt {
     function makeDataset(id: hdf5.Id, name: string, buffer: Buffer, options: MakeBufferDatasetOptions): void;
 
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @param buffer Typed array, string or a node::Buffer. The buffer can have attributes describing its shape. When using a node::Buffer the data is expected to be homogeneous and the type attribute set to choice in H5Type
      */
     function writeDataset(id: hdf5.Id, name: string, buffer: TypedArray | string | Buffer): void;
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @param buffer Typed array, string or a node::Buffer. The buffer can have attributes describing its shape. When using a node::Buffer the data is expected to be homogeneous and the type attribute set to choice in H5Type
@@ -300,14 +300,14 @@ export declare namespace h5lt {
     function writeDataset(id: hdf5.Id, name: string, buffer: TypedArray | string | Buffer, options: DatasetOptions): void;
 
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @returns A typed array or string
      */
     function readDataset(id: hdf5.Id, name: string): TypedArray | string;
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset
      * @param options start, stride and count
@@ -316,14 +316,14 @@ export declare namespace h5lt {
     function readDataset(id: hdf5.Id, name: string, options: DatasetOptions): TypedArray | string;
 
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset.
      * @return A node::Buffer with the data and attributes for its shape and type
      */
     function readDatasetAsBuffer(id: hdf5.Id, name: string): Buffer;
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset.
      * @param options start, stride and count
@@ -331,7 +331,7 @@ export declare namespace h5lt {
      */
     function readDatasetAsBuffer(id: hdf5.Id, name: string, options: DatasetOptions): Buffer;
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name a string naming the dataset.
      * @param options start, stride and count
@@ -382,7 +382,7 @@ export declare namespace h5pt {
 export declare namespace h5tb {
 
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name The table name
      * @param model a model composed of an Array of typed arrays and Array of strings each representing a column in the table. Each column has a name attribute to name it.
@@ -405,7 +405,7 @@ export declare namespace h5tb {
     function writeRecords(id: hdf5.Id, name: string, start: number, model: TableArray[]): void;
 
     /**
-     * 
+     *
      * @param id the group or file id location. Every group and the file return with an id attribute
      * @param name The table name
      * @returns a model composed of an Array of typed arrays and Array of strings each representing a column in the table. Each column has a name attribute to name it.

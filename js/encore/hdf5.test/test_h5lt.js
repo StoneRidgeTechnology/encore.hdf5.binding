@@ -6,8 +6,8 @@ require("should");
 const fs            = require('fs');
 const parseString   = require('xml2js').parseString;
 const util          = require('util');
-const hdf5Lib       = require('..');
-const globs         = require('../lib/globals');
+const hdf5Lib       = require('../hdf5/index.js');
+const globs         = require('../hdf5/globals.js');
 
 const hdf5          = hdf5Lib.hdf5;
 const h5lt          = hdf5Lib.h5lt;
@@ -342,7 +342,7 @@ describe("testing lite interface ", function() {
             buffer[9]=5.0;
             h5lt.makeDataset(group.id, 'Arrayed-chunked Index', buffer, {rank:2, rows: 5, columns:2, chunkSize: [3,2]});
             const readBuffer=h5lt.readDataset(group.id, 'Arrayed-chunked Index', function(options){
-                
+
             });
             readBuffer.constructor.name.should.match('Float64Array');
             readBuffer.length.should.match(10);
@@ -405,13 +405,13 @@ describe("testing lite interface ", function() {
             const groupDocuments      = file.createGroup('pmcservices/sodium-icosanoate/Documents');
             const groupFrequencyData  = file.createGroup('pmcservices/sodium-icosanoate/Frequency Data');
             const groupTrajectories   = file.createGroup('pmcservices/sodium-icosanoate/Trajectories');
-            const sodiumIcosanoateXml = fs.readFileSync("./test/examples/sodium-icosanoate.xml", "ascii");
+            const sodiumIcosanoateXml = fs.readFileSync("./js/encore/hdf5.test/examples/sodium-icosanoate.xml", "ascii");
             h5lt.makeDataset(groupDocuments.id, 'sodium-icosanoate.xml', sodiumIcosanoateXml);
             groupTrajectories.close();
             groupFrequencyData.close();
             groupDocuments.close();
 
-            const sodiumIcosanoateXmol = fs.readFileSync("./test/examples/sodium-icosanoate.xmol", "ascii");
+            const sodiumIcosanoateXmol = fs.readFileSync("./js/encore/hdf5.test/examples/sodium-icosanoate.xmol", "ascii");
             let count              = 0;
             let numberOfDataLines;
             let title;
@@ -726,7 +726,7 @@ describe("testing lite interface ", function() {
           done();
         });
     });
-    
+
     describe("varlen char arrays", function() {
         let file;
         before(function(done) {
@@ -881,11 +881,11 @@ describe("testing lite interface ", function() {
           done();
         });
     });
-    
+
     describe("varlen chars", function() {
         let file;
         before(function(done) {
-          file = new hdf5.File('./test/examples/nba.h5', Access.ACC_RDONLY);
+          file = new hdf5.File('./js/encore/hdf5.test/examples/nba.h5', Access.ACC_RDONLY);
           done();
         });
         it("read varlen's", function(done) {
@@ -968,7 +968,7 @@ var start = process.hrtime();
           done();
         });
     });
-    
+
     describe("create an xmol with frequency pulled from h5 ", function() {
             this.timeout(35000);
         let file;
@@ -1112,7 +1112,7 @@ var start = process.hrtime();
           done();
         });
     });
-    
+
     describe("iterations on h5 ", function() {
         let file;
         before(function(done) {
@@ -1141,7 +1141,7 @@ var start = process.hrtime();
             groupTarget.close();
             done();
         });
-        
+
         it.skip("visit thru", function(done) {
             groupTarget=file.openGroup('pmcservices/sodium-icosanoate/Documents', CreationOrder.H5P_CRT_ORDER_TRACKED| CreationOrder.H5P_CRT_ORDER_TRACKED);
             groupTarget.id.should.not.equal(-1);
@@ -1159,7 +1159,7 @@ var start = process.hrtime();
             groupTarget.close();
             done();
         });
-        
+
         after(function(done) {
           file.close();
           done();

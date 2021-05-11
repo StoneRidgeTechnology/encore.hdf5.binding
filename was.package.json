@@ -2,7 +2,7 @@
   "name": "encore.hdf5.binding",
   "version": "0.4.0",
   "description": "Native Abstractions for hdf5 file io",
-  "main": "./index.js",
+  "main": "./js/encore/hdf5/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Wandalen/encore.hdf5.binding.git"
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "install": "node-gyp rebuild --jobs max",
-    "test": "mocha test"
+    "test": "mocha js/encore/hdf5.test"
   },
   "contributors": [
     "Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)",

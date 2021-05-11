@@ -1,8 +1,8 @@
 'use strict';
 require("should");
 
-const hdf5Lib       = require('..');
-const globs         = require('../lib/globals');
+const hdf5Lib       = require('../hdf5/index.js');
+const globs         = require('../hdf5/globals.js');
 
 const hdf5          = hdf5Lib.hdf5;
 const h5tb          = hdf5Lib.h5tb;
@@ -468,14 +468,14 @@ describe("testing table interface ",function(){
 
             const types = [new Int8Array(count),new Int16Array(count),new Int32Array(count),new Float32Array(count), new Float64Array(count)];
 
-            for (let i = 0; i < types.length; i++) {                   
+            for (let i = 0; i < types.length; i++) {
                 const col = types[i];
                 col.name = 'col'+i;
 
                 for (let c = 0; c < count; c++) {
-                    col[c] = ((i+10)*(c+2));              
+                    col[c] = ((i+10)*(c+2));
                 }
-                
+
                 table.push(col);
             }
 
@@ -485,14 +485,14 @@ describe("testing table interface ",function(){
             const readTable=h5tb.readTable(file.id, "infos");
             readTable.length.should.equal(types.length);
 
-            for (let i = 0; i < readTable.length; i++) {                   
+            for (let i = 0; i < readTable.length; i++) {
                 const col = readTable[i];
                 col.name.should.equal('col'+i);
 
                 for (let c = 0; c < count; c++) {
-                    col[c].should.equal(((i+10)*(c+2)));              
+                    col[c].should.equal(((i+10)*(c+2)));
                 }
-                
+
             }
 
             done();
@@ -562,7 +562,7 @@ describe("testing table interface ",function(){
             }
             done();
         });
-        
+
         it.skip("visit thru", function(done) {
             groupTarget=file.openGroup('pmcservices/sodium-icosanoate/Documents', CreationOrder.H5P_CRT_ORDER_TRACKED| CreationOrder.H5P_CRT_ORDER_TRACKED);
             groupTarget.id.should.not.equal(-1);
@@ -580,7 +580,7 @@ describe("testing table interface ",function(){
             groupTarget.close();
             done();
         });
-        
+
         after(function(done) {
           file.close();
           done();
