@@ -7,30 +7,60 @@ This is binding for
 
 This is [fork](https://github.com/HDF-NI/hdf5.node), which is created to provide prebuild versions and fix issues of the original implementation.
 
+## Support
+
+Node versions:
+* v13
+* v14
+
+HDF5 versions:
+* v1.10.x
+* v1.8.x
+
 ## How to add to your project
 
 ```bash
 npm add encore.hdf5.binding
 ```
-If your native hdf5 library is not locate on default path
-you can set the path with --hdf5_home_linux switch on this project as well as
-dependent projects.
 
-## How to add to your project
+This installation method assumes that you have hdf5 library installed at default path.
+
+## Default path to HDF5 library
+
+The module expects that hdf5 library is installed at:
+
+| Platform |       Path       |
+| :------  | :--------------  |
+|  Linux   |    /usr/local    |
+| Windows  | C:/Software/hdf5 |
+|   Mac    |    /usr/local    |
+
+## How to provide custom path to HDF5 library
+
+If your native hdf5 library is not located on default path you can set the path with a switch on this project as well as
+dependent projects:
+
+On Linux:
 
 ```bash
 npm add encore.hdf5.binding --hdf5_home_linux=<your native hdf path>
 ```
-For mac and windows the switches are --hdf5_home_mac & --hdf5_home_win
 
-## With yarn
+On Mac:
 
-To install with yarn first need to configure so it knows where the libraries are:
-
+```bash
+npm add encore.hdf5.binding --hdf5_home_mac=<your native hdf path>
 ```
-yarn config set hdf5_home_linux $HDF5_HOME
-yarn install
+
+On Windows:
+
+```bash
+npm add encore.hdf5.binding --hdf5_home_win=<your native hdf path>
 ```
+
+## How to install native hdf5 library
+
+Installation instructions can be found [here](https://github.com/Wandalen/encore.hdf5.install)
 
 ## Prerequisites
 
@@ -40,7 +70,7 @@ Note: If node-gyp isn't installed
 npm install -g node-gyp
 ```
 
-## Try out
+## Example
 
 Quick start to open and read from an h5 file
 
