@@ -13,7 +13,8 @@
   "devDependencies": {
     "mocha": "8.1.1",
     "should": "13.2.3",
-    "xml2js": "0.4.23"
+    "xml2js": "0.4.23",
+    "wTesting": ""
   },
   "scripts": {
     "install": "node-gyp rebuild --jobs max",
