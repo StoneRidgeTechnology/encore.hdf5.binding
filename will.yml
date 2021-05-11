@@ -77,10 +77,10 @@ path :
     - node_modules
     - build
     - binding
-  proto: ./proto
-  export: '{path::proto}/**'
+  js: ./js
+  export: '{path::js}/**'
   doc: ./doc
-  js: proto
+  js: js
   cpp: cpp
   build: build
   binding: binding
@@ -109,12 +109,12 @@ path :
       debug: release
       raw: compiled
       content: prime
-  entry.proto.no.tests:
+  entry.js.no.tests:
     path: js/Main.ss
     criterion:
       tests: no.tests
-  entry.proto.only.tests:
-    path: proto/**/*.test.s
+  entry.js.only.tests:
+    path: js/**/*.test.s
     criterion:
       tests: only.tests
   entry.out.raw.debug:
@@ -133,7 +133,7 @@ path :
         - release
       raw: compiled
       content: prime
-  npm.proto.entry:
+  npm.js.entry:
     - ./js/encore/hdf5/index.js
 
   repository : git+https://github.com/Wandalen/encore.hdf5.binding.git
@@ -143,7 +143,7 @@ path :
   bugtracker : https:///github.com/Wandalen/encore.hdf5.binding/issues
 
 reflector:
-  reflect.proto:
+  reflect.js:
     inherit: predefined.*
     criterion:
       tests: no.tests
@@ -155,27 +155,27 @@ reflector:
         - compiled
       content: prime
     filePath:
-      'path::proto': '{path::out.*=1}/source'
+      'path::js': '{path::out.*=1}/source'
   reflect.cpp:
     inherit: predefined.*
     filePath:
       'path::cpp': '{path::out}/cpp'
-  transpile.proto.raw:
+  transpile.js.raw:
     inherit: predefined.*
     step:
       inherit: files.transpile
-      entry: 'path::entry.proto.no.tests'
+      entry: 'path::entry.js.no.tests'
     criterion:
       raw: raw
       debug: release
       content: prime
     filePath:
-      'path::proto': '{path::out.raw.release}'
-  transpile.proto.no.tests.compiled:
+      'path::js': '{path::out.raw.release}'
+  transpile.js.no.tests.compiled:
     inherit: predefined.*
     step:
       inherit: files.transpile
-      entry: 'path::entry.proto.*=1'
+      entry: 'path::entry.js.*=1'
     criterion:
       tests: no.tests
       raw: compiled
@@ -186,12 +186,12 @@ reflector:
     filePath:
       '**.test*': 0
       '**.test/**': 0
-      'path::proto': '{path::out.*=1}/Main.s'
-  transpile.proto.only.tests.compiled:
+      'path::js': '{path::out.*=1}/Main.s'
+  transpile.js.only.tests.compiled:
     inherit: predefined.*
     step:
       inherit: files.transpile
-      entry: 'path::entry.proto.*=1'
+      entry: 'path::entry.js.*=1'
       external.before: '{path::out.*=1}/Main.s'
     criterion:
       tests: only.tests
@@ -202,16 +202,16 @@ reflector:
       content: prime
     filePath:
       '**.test*': 1
-      'path::proto': '{path::out.*=1}/Tests.test.s'
+      'path::js': '{path::out.*=1}/Tests.test.s'
 
 step :
 
-  proto.export :
+  js.export :
     inherit : module.export
     export : path::export
     tar : 0
     criterion :
-      content : 'proto'
+      content : 'js'
 
   doc.export :
     inherit : module.export
@@ -258,10 +258,10 @@ step :
     filePath:
       - '{path::build}'
       - '{path::binding}'
-  tst.proto:
-    shell: 'tst {path::proto}'
+  tst.js:
+    shell: 'tst {path::js}'
     criterion:
-      content: proto
+      content: js
   tst.debug:
     shell: 'tst {path::out.*=1}'
     criterion:
@@ -281,13 +281,13 @@ step :
 
 build :
 
-  proto.export :
+  js.export :
     criterion :
-      content : 'proto'
+      content : 'js'
       export : 1
     steps :
       # - build::debug.raw
-      - step::proto.export
+      - step::js.export
 
   doc.export :
     criterion :
@@ -313,7 +313,7 @@ build :
       export : 1
     steps :
       # - build::npm
-      - build::proto.export
+      - build::js.export
       # - build::doc.export
   debug:
     criterion:
@@ -332,8 +332,8 @@ build :
       content: prime
     steps:
       - 'step::clean.out*=2'
-      - transpile.proto.no.tests*=1
-      - transpile.proto.only.tests*=1
+      - transpile.js.no.tests*=1
+      - transpile.js.only.tests*=1
   raw.release:
     criterion:
       debug: release
@@ -341,7 +341,7 @@ build :
       content: prime
     steps:
       - 'step::clean.out*=2'
-      - transpile.proto.raw
+      - transpile.js.raw
   release:
     criterion:
       debug: release
@@ -349,8 +349,8 @@ build :
       content: prime
     steps:
       - 'step::clean.out*=2'
-      - transpile.proto.no.tests*=1
-      - transpile.proto.only.tests*=1
+      - transpile.js.no.tests*=1
+      - transpile.js.only.tests*=1
   npm:
     criterion:
       debug: debug
