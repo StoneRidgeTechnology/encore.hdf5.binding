@@ -48,13 +48,13 @@ npm add encore.hdf5.binding@delta --hdf5_home_linux=<your native hdf path>
 On Mac:
 
 ```bash
-npm add encore.hdf5.binding --hdf5_home_mac=<your native hdf path>
+npm add encore.hdf5.binding@delta --hdf5_home_mac=<your native hdf path>
 ```
 
 On Windows:
 
 ```bash
-npm add encore.hdf5.binding --hdf5_home_win=<your native hdf path>
+npm add encore.hdf5.binding@delta --hdf5_home_win=<your native hdf path>
 ```
 
 ## How to install native hdf5 library
@@ -71,12 +71,24 @@ npm install -g node-gyp
 
 ## Example
 
-Quick start to open and read from an h5 file
-
 ```javascript
-var hdf5 = require( 'encore.hdf5.binding' ).hdf5;
+var path = require( 'path' );
+var hdf5 = require( '../..' ).hdf5;
+var Access = require( '../../js/encore/hdf5/globals' ).Access;
 
-var Access = require( 'encore.hdf5.binding/lib/globals' ).Access;
-var file = new hdf5.File( '/tmp/foo.h5', Access.ACC_RDONLY );
-var group = file.openGroup( 'bar' );
+var file = new hdf5.File( path.join( __dirname, './File.h5' ), Access.ACC_RDONLY );
+var members = file.getMemberNames();
+
+console.log( members );
+
+/*
+log:
+[ 'group1' ]
+*/
+
+group.close();
+file.close();
+
 ```
+
+[Source code](./sample/trivial/Sample.ss)
