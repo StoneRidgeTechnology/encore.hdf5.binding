@@ -1,14 +1,15 @@
 about :
 
   name : 'encore.hdf5.binding'
-  description : 'Native Abstractions for hdf5 file io'
+  description : 'Binding of HDF5'
   version : '0.4.0'
   enabled : 1
   interpreters :
   - njs >= 10.0.0
   license : MIT
-  author : 'Kostiantyn Wandalen <wanalen@01.school>'
   contributors :
+  - 'Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)'
+  - 'Roger I Martin <mathmldashx@yahoo.com> (https://github.com/rimmartin/)'
   - 'Kostiantyn Wandalen <wanalen@01.school>'
   - 'Volodymyr M. <volodymyr.migdal@gmail.com>'
   native : 1
