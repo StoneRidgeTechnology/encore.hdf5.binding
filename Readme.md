@@ -32,13 +32,18 @@ yarn config set hdf5_home_linux $HDF5_HOME
 yarn install
 ```
 
+## Prerequisites
+
 Note: If node-gyp isn't installed
 
 ```bash
 npm install -g node-gyp
 ```
 
+## Try out
+
 Quick start to open and read from an h5 file
+
 ```javascript
 var hdf5 = require( 'encore.hdf5.binding' ).hdf5;
 
