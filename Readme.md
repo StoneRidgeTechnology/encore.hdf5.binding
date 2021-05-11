@@ -1,10 +1,6 @@
-<!-- [![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][npm-url]
-[![Node.js Version][node-version-image]][node-version-url] -->
-
 # module::encore.hdf5.binding  [![status](https://github.com/Wandalen/encore.hdf5.binding/workflows/publish/badge.svg)](https://github.com/Wandalen/encore.hdf5.binding/actions?query=workflow%3Apublish) [![stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)](https://github.com/emersion/stability-badges#stable)
 
-HDF5 is a node module for reading and writing the 
+HDF5 is a node module for reading and writing the
 [HDF5](https://www.hdfgroup.org/HDF5/) file format.
 
 ## About this fork
@@ -16,15 +12,15 @@ This fork is created to provide prebuild versions of the library. [Original repo
 API documentation is available at <http://hdf-ni.github.io/hdf5.node>
 
 ```bash
-npm install hdf5
+npm install encore.hdf5.binding
 ```
-See <http://hdf-ni.github.io/hdf5.node/doc/install-setup.html> for the native 
-requirements and details. If your native hdf5 libraries aren't at the default 
-you can set the path with --hdf5_home_linux switch on this project as well as 
+See <http://hdf-ni.github.io/hdf5.node/doc/install-setup.html> for the native
+requirements and details. If your native hdf5 libraries aren't at the default
+you can set the path with --hdf5_home_linux switch on this project as well as
 dependent projects.
 
 ```bash
-npm install hdf5 --hdf5_home_linux=<your native hdf path>
+npm install encore.hdf5.binding --hdf5_home_linux=<your native hdf path>
 ```
 For mac and windows the switches are --hdf5_home_mac & --hdf5_home_win
 
@@ -43,9 +39,9 @@ npm install -g node-gyp
 
 Quick start to open and read from an h5 file
 ```javascript
-var hdf5 = require('hdf5').hdf5;
+var hdf5 = require('encore.hdf5.binding').hdf5;
 
-var Access = require('hdf5/lib/globals').Access;
+var Access = require('encore.hdf5.binding/lib/globals').Access;
 var file = new hdf5.File('/tmp/foo.h5', Access.ACC_RDONLY);
 var group = file.openGroup('bar');
 ```
@@ -55,31 +51,31 @@ var group = file.openGroup('bar');
 * Note: Release v0.3.5
   * Strictly for upgrading the build on Windows.  Tested with VS 2017
 
-* Note: Release v0.3.4 
+* Note: Release v0.3.4
   * Reference attributes on datasets and groups are now available properties.
-  * Reserved propeties such as type, rank, rows etc. are now settable in options for dataset functions.  
-  * Typescript definition files now available. 
+  * Reserved propeties such as type, rank, rows etc. are now settable in options for dataset functions.
+  * Typescript definition files now available.
   * For static native linkng, link_type command line switch is provided in binding.gyp(darwin,win untested).
   * Added custom 64 bit signed (Int64) and unsigned (Uint64) integer attributes
-    read/write since they aren't yet supported by javascript.  
+    read/write since they aren't yet supported by javascript.
   * Added a file method enableSingleWriteMultiRead (if native version older than 1.10.x it is a noop).
-  * Synchronous iterate and visit is now available on file and group children. 
+  * Synchronous iterate and visit is now available on file and group children.
   * Bug fixes on dimensioning have been made
 
 * Note: asynchronous i/o is coming but not in this release
 
-* Note: Release v0.3.3 Minor fix on fixed length of strings in array. Handles the situation where 
+* Note: Release v0.3.3 Minor fix on fixed length of strings in array. Handles the situation where
 the strings are contiguous without all having null bytes.
 
-* Note: Release v0.3.2 tested with nodejs v6.11.2, v7.5.0 and v8.4.0. Code was changed 
-to allow v8.4.0 to work while still working with the earlier versions. It may work back as far as v4.2.1 
-let me know if you have a version in between that needs testing. Variable length array of 
+* Note: Release v0.3.2 tested with nodejs v6.11.2, v7.5.0 and v8.4.0. Code was changed
+to allow v8.4.0 to work while still working with the earlier versions. It may work back as far as v4.2.1
+let me know if you have a version in between that needs testing. Variable length array of
 strings can be be read as regions.
 
 * Note: Release v0.3.1 is based on new V8 API changes coming with nodejs v7.
 
-* Note: Release v0.1.0 was built with nodejs v4.2.1. If you want nodejs v0.12.x 
-then stay with  release v0.0.20. npm will continue with nodejs v4.x.x line and 
+* Note: Release v0.1.0 was built with nodejs v4.2.1. If you want nodejs v0.12.x
+then stay with  release v0.0.20. npm will continue with nodejs v4.x.x line and
 any fixes or features needed by prior versions will be from github branches.
 
 * Note: Release v0.0.20 is for prebuilts with hdf5-1.8.15-patch1. If you want
@@ -87,7 +83,7 @@ hdf5-1.8.14 stay with v0.0.19.
 
 ## Philosophy
 
-This module, [hdf5.node][npm-url], is intended to be a pure API for reading
+This module is intended to be a pure API for reading
 and writing HDF5 files. Graphical user interfaces or other layers should
 be implemented in separate modules.
 
@@ -118,17 +114,17 @@ untested.
  See tutorial
 <http://hdf-ni.github.io/hdf5.node/tut/subset_tutorial.html> for example applied
 to node Buffers.
- 
+
 ### Filters and Compression
 
 Testing filters and compression.  Have the gzip filter working. For some
 applications getting the uncompressed data from the h5 would reduce the number
 of compressions and decompressions.  For example an image could be sent to
-client before unzipping and rezipping on the server side.  
+client before unzipping and rezipping on the server side.
 
 Third party filters can be used.  Those do take separate compiled libraries
 yet are independent. They get picked up by native hdf5 from the
-HDF5_PLUGIN_PATH.               
+HDF5_PLUGIN_PATH.
 
 
 
@@ -144,11 +140,3 @@ of images can now be read.
 ## Contact
 
 My twitch stream is https://www.twitch.tv/sylvanmats
-
-[npm-image]: https://badge.fury.io/js/hdf5.svg
-[npm-url]: https://www.npmjs.com/package/hdf5
-[downloads-image]: https://img.shields.io/npm/dm/hdf5.svg
-[node-version-image]: https://img.shields.io/node/v/hdf5.svg
-[node-version-url]: https://nodejs.org/en/download/
-[travis-ci-build-image]: https://travis-ci.org/HDF-NI/hdf5.node.svg?branch=master
-[travis-ci-build-url]: https://travis-ci.org/HDF-NI/hdf5.node
