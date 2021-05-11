@@ -21,14 +21,14 @@
                     "/usr/include/hdf5/serial"
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/hdf5.cc',
-                    'src/attributes.cc',
-                    'src/methods.cc',
-                    'src/h5_file.cc',
-                    'src/h5_group.cc',
-                    'src/reference.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/hdf5.cc',
+                    'cpp/attributes.cc',
+                    'cpp/methods.cc',
+                    'cpp/h5_file.cc',
+                    'cpp/h5_group.cc',
+                    'cpp/reference.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -47,18 +47,18 @@
                 'include_dirs': [
                     '<(hdf5_home_win)/include',
                     './win/include',
-                    './src',
+                    './cpp',
                     'C:/Program Files/Microsoft SDKs/Windows/v7.1/Include'
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/hdf5.cc',
-                    'src/attributes.cc',
-                    'src/methods.cc',
-                    'src/h5_file.cc',
-                    'src/h5_group.cc',
-                    'src/reference.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/hdf5.cc',
+                    'cpp/attributes.cc',
+                    'cpp/methods.cc',
+                    'cpp/h5_file.cc',
+                    'cpp/h5_group.cc',
+                    'cpp/reference.cc'
                 ],
                 "configurations": {
                             "Release": {
@@ -102,14 +102,14 @@
                     '<(hdf5_home_mac)/include'
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/hdf5.cc',
-                    'src/attributes.cc',
-                    'src/methods.cc',
-                    'src/h5_file.cc',
-                    'src/h5_group.cc',
-                    'src/reference.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/hdf5.cc',
+                    'cpp/attributes.cc',
+                    'cpp/methods.cc',
+                    'cpp/h5_file.cc',
+                    'cpp/h5_group.cc',
+                    'cpp/reference.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -139,10 +139,10 @@
                     "/usr/include/hdf5/serial"
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/h5lt.cc',
-                    'src/reference.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/h5lt.cc',
+                    'cpp/reference.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -161,14 +161,14 @@
                 'include_dirs': [
                     '<(hdf5_home_win)/include',
                     './win/include',
-                    './src',
+                    './cpp',
                     'C:/Program Files/Microsoft SDKs/Windows/v7.1/Include'
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/reference.cc',
-                    'src/h5lt.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/reference.cc',
+                    'cpp/h5lt.cc'
                 ],
                 "configurations": {
                             "Release": {
@@ -210,10 +210,10 @@
                     '<(hdf5_home_mac)/include'
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/h5lt.cc',
-                    'src/reference.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/h5lt.cc',
+                    'cpp/reference.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -243,7 +243,7 @@
                     "/usr/include/hdf5/serial"
                 ],
                 'sources': [
-                    'src/h5tb.cc'
+                    'cpp/h5tb.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -263,11 +263,11 @@
                 'include_dirs': [
                     '<(hdf5_home_win)/include',
                     './win/include',
-                    './src',
+                    './cpp',
                     'C:/Program Files/Microsoft SDKs/Windows/v7.1/Include'
                 ],
                 'sources': [
-                    'src/h5tb.cc'
+                    'cpp/h5tb.cc'
                 ],
                 "configurations": {
                             "Release": {
@@ -309,7 +309,7 @@
                     '<(hdf5_home_mac)/include'
                 ],
                 'sources': [
-                    'src/h5tb.cc'
+                    'cpp/h5tb.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -339,10 +339,10 @@
                     "/usr/include/hdf5/serial"
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/h5pt.cc',
-                    'src/h5_pt.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/h5pt.cc',
+                    'cpp/h5_pt.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -361,14 +361,14 @@
                 'include_dirs': [
                     '<(hdf5_home_win)/include',
                     './win/include',
-                    './src',
+                    './cpp',
                     'C:/Program Files/Microsoft SDKs/Windows/v7.1/Include'
                 ],
                 'sources': [
-                    'src/int64.cc',
-                    'src/uint64.cc',
-                    'src/h5pt.cc',
-                    'src/h5_pt.cc'
+                    'cpp/int64.cc',
+                    'cpp/uint64.cc',
+                    'cpp/h5pt.cc',
+                    'cpp/h5_pt.cc'
                 ],
                 "configurations": {
                             "Release": {
@@ -410,8 +410,8 @@
                     '<(hdf5_home_mac)/include'
                 ],
                 'sources': [
-                    'src/h5pt.cc',
-                    'src/h5_pt.cc'
+                    'cpp/h5pt.cc',
+                    'cpp/h5_pt.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -441,7 +441,7 @@
                     "/usr/include/hdf5/serial"
                 ],
                 'sources': [
-                    'src/h5im.cc'
+                    'cpp/h5im.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -460,11 +460,11 @@
                 'include_dirs': [
                     '<(hdf5_home_win)/include',
                     './win/include',
-                    './src',
+                    './cpp',
                     'C:/Program Files/Microsoft SDKs/Windows/v7.1/Include'
                 ],
                 'sources': [
-                    'src/h5im.cc'
+                    'cpp/h5im.cc'
                 ],
                 "configurations": {
                             "Release": {
@@ -506,7 +506,7 @@
                     '<(hdf5_home_mac)/include'
                 ],
                 'sources': [
-                    'src/h5im.cc'
+                    'cpp/h5im.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -536,7 +536,7 @@
                     "/usr/include/hdf5/serial"
                 ],
                 'sources': [
-                    'src/h5ds.cc'
+                    'cpp/h5ds.cc'
                 ],
                 'link_settings': {
                     'libraries': [
@@ -555,11 +555,11 @@
                 'include_dirs': [
                     '<(hdf5_home_win)/include',
                     './win/include',
-                    './src',
+                    './cpp',
                     'C:/Program Files/Microsoft SDKs/Windows/v7.1/Include'
                 ],
                 'sources': [
-                    'src/h5ds.cc'
+                    'cpp/h5ds.cc'
                 ],
                 "configurations": {
                             "Release": {
@@ -601,7 +601,7 @@
                     '<(hdf5_home_mac)/include'
                 ],
                 'sources': [
-                    'src/h5ds.cc'
+                    'cpp/h5ds.cc'
                 ],
                 'link_settings': {
                     'libraries': [
