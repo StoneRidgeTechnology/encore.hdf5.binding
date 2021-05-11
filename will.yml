@@ -60,7 +60,7 @@ submodule:
     enabled: 0
     criterion:
       development: 1
-  mocha:
+  wTesting:
     path: 'npm:///wTesting'
     enabled: 0
     criterion:
