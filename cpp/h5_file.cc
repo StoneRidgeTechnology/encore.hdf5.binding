@@ -32,7 +32,11 @@ namespace NodeHDF5 {
         return false;
       }
 
-      return options->Get(context, name).ToLocalChecked()->BooleanValue(isolate);
+      #if NODE_VERSION_AT_LEAST( 12, 0, 0 )
+        return options->Get(context, name).ToLocalChecked()->BooleanValue(isolate);
+      #else
+        return options->Get(context, name).ToLocalChecked()->BooleanValue(context).ToChecked();
+      #endif
     };
 
   File::File(const char* path) {
@@ -68,7 +72,7 @@ namespace NodeHDF5 {
       ss << "Failed to set link creation order, with return: " << err << ".\n";
       error = true;
       throw  Exception(ss.str());
-      
+
     }
   }
 
@@ -164,7 +168,7 @@ namespace NodeHDF5 {
     // append this function to the target object
     v8::Maybe<bool> ret = target->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "File", v8::NewStringType::kInternalized).ToLocalChecked(), t->GetFunction(context).ToLocalChecked());
     if(ret.ToChecked()){
-      
+
     }
   }
 
@@ -211,7 +215,7 @@ namespace NodeHDF5 {
     v8::Maybe<bool> ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "path", v8::NewStringType::kInternalized).ToLocalChecked(),
                      String::NewFromUtf8(v8::Isolate::GetCurrent(), f->name.c_str(), v8::NewStringType::kInternalized).ToLocalChecked());
     if(ret.ToChecked()){
-      
+
     }
     hsize_t file_size;
     herr_t  ret_value = H5Fget_filesize(f->id, &file_size);
@@ -233,7 +237,7 @@ namespace NodeHDF5 {
 
     ret = args.This()->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), idInstance);
     if(ret.ToChecked()){
-      
+
     }
     } catch (Exception& ex) {
         v8::Isolate::GetCurrent()->ThrowException(v8::Exception::Error(String::NewFromUtf8(v8::Isolate::GetCurrent(), ex.what(), v8::NewStringType::kInternalized).ToLocalChecked()));
@@ -342,7 +346,7 @@ namespace NodeHDF5 {
         idWrap->value            = group->id;
         v8::Maybe<bool> ret = instance->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), idInstance);
         if(ret.ToChecked()){
-          
+
         }
         group->Wrap(instance);
 
@@ -368,7 +372,7 @@ namespace NodeHDF5 {
       idWrap->value                    = group->id;
       v8::Maybe<bool>  ret = instance->Set(context, String::NewFromUtf8(v8::Isolate::GetCurrent(), "id", v8::NewStringType::kInternalized).ToLocalChecked(), idInstance);
       if(ret.ToChecked()){
-        
+
       }
       group->Wrap(instance);
 
@@ -390,7 +394,7 @@ namespace NodeHDF5 {
       args.GetReturnValue().SetUndefined();
       return;
     }
-    
+
     try {
       Local<Object>     options;
       bool separateAttrs=false;
@@ -408,7 +412,7 @@ namespace NodeHDF5 {
         v8::Maybe<bool> ret = array->Set(context, 0, instance);
         ret = array->Set(context, 1, attrs);
         if(ret.ToChecked()){
-          
+
         }
         args.GetReturnValue().Set(array);
       }
@@ -424,7 +428,7 @@ namespace NodeHDF5 {
       args.GetReturnValue().SetUndefined();
       return;
     }
-    
+
   }
 
   void File::Move(const v8::FunctionCallbackInfo<Value>& args) {
