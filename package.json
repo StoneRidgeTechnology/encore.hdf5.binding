@@ -1,6 +1,6 @@
 {
   "name" : "encore.hdf5.binding",
-  "version" : "0.3.4",
+  "version" : "0.3.5",
   "description" : "Binding of HDF5",
   "main" : "./js/encore/hdf5/index.js",
   "repository" :
@@ -16,7 +16,7 @@
     "xml2js" : "0.4.23",
     "wTesting" : "delta"
   },
-  "scripts" : { "install" : "node-gyp rebuild --jobs max", "test" : "wtest .run 'proto/**' rapidity:-1" },
+  "scripts" : { "install" : "node-gyp rebuild --jobs max", "test" : "wtest .run 'js/**' rapidity:-1" },
   "contributors" :
   [
     "Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)",
