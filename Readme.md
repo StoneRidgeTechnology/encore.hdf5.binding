@@ -19,7 +19,7 @@ HDF5 versions:
 ### How to add to your project
 
 ```bash
-npm add encore.hdf5.binding@delta
+npm add encore.hdf5.binding@stable
 ```
 
 This installation method assumes that you have [HDF5](https://www.hdfgroup.org/HDF5/) library installed at default path.
@@ -42,19 +42,19 @@ dependent projects:
 On Linux:
 
 ```bash
-npm add encore.hdf5.binding@delta --hdf5_home_linux=<your native hdf path>
+npm add encore.hdf5.binding@stable --hdf5_home_linux=<your native hdf path>
 ```
 
 On Mac:
 
 ```bash
-npm add encore.hdf5.binding@delta --hdf5_home_mac=<your native hdf path>
+npm add encore.hdf5.binding@stable --hdf5_home_mac=<your native hdf path>
 ```
 
 On Windows:
 
 ```bash
-npm add encore.hdf5.binding@delta --hdf5_home_win=<your native hdf path>
+npm add encore.hdf5.binding@stable --hdf5_home_win=<your native hdf path>
 ```
 
 ### How to install HDF5 library
