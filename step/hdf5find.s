@@ -5,7 +5,7 @@ let path = require( 'path' );
 let fs = require( 'fs' );
 
 let which = process.platform === 'win32' ? 'where' : 'which';
-let binary = process.platform === 'win32' ? 'h5dump' : 'h5cc';
+let binary = process.platform === 'win32' ? 'h5dump' : 'h5dump';
 
 let output = null;
 try
