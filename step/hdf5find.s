@@ -11,7 +11,7 @@ let output = null;
 try
 {
   // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
-  output = exec( `${which} ${binary}`, { stdio : 'pipe' } );
+  output = exec( `${which} ${binary}`, { stdio : 'inherit' } );
 }
 catch( err )
 {
