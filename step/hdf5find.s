@@ -1,11 +1,16 @@
 
 let cp = require( 'child_process' );
 let exec = cp.execSync;
+let path = require( 'path' );
+let fs = require( 'fs' );
+
+let which = process.platform === 'win32' ? 'where' : 'which';
 
 let output = null;
 try
 {
-  output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
+  // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
+  output = exec( `${which} h5dump`, { stdio : 'pipe' } );
 }
 catch( err )
 {
@@ -14,9 +19,21 @@ catch( err )
 
 output = output.toString();
 
-// console.log( output )
+let installation = path.resolve( output.trim(), '../..' )
 
-let version = /HDF5 Version:(.*)/.exec( output )
-let installation = /Installation point:(.*)/.exec( output );
+if( process.argv[ 2 ] === 'version' )
+{
+  let settings = fs.readFileSync( path.join( installation, 'lib/libhdf5.settings' ) );
+  settings = settings.toString();
+  let version = /HDF5 Version:(.*)/.exec( settings )
+  console.log( version[ 0 ] );
+}
+else
+{
+  console.log( installation );
+}
 
-console.log( installation[ 1 ].trim() )
+
+
+
+

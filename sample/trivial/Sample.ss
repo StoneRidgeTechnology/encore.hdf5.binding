@@ -13,5 +13,4 @@ log:
 [ 'group1' ]
 */
 
-group.close();
 file.close();
