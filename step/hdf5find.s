@@ -5,17 +5,18 @@ let path = require( 'path' );
 let fs = require( 'fs' );
 
 let which = process.platform === 'win32' ? 'where' : 'which';
-let binary = process.platform === 'win32' ? 'h5dump' : 'h5dump';
+let binary = process.platform === 'win32' ? 'h5dump' : 'h5cc';
 
 let output = null;
 try
 {
   // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
-  output = exec( `${which} ${binary}`, { stdio : 'inherit' } );
+  output = exec( `${which} ${binary}`, { stdio : 'pipe' } );
 }
 catch( err )
 {
-  throw Error( `Failed to find hdf5 library installation. Reason:\n` + err.message );
+  console.warn( `Failed to find hdf5 library installation. Reason:\n` + err.message );
+  installation = defaultPathGet();
 }
 
 output = output.toString();
@@ -71,6 +72,16 @@ function getSettings( installation )
   console.log( `> ${execPath}` )
   let output = exec( execPath, { stdio : 'pipe' } );
   return output.toString();
+}
+
+//
+
+function defaultPathGet()
+{
+  if( process.platform === 'win32' )
+  return `C:/Software/hdf5`;
+  else
+  return `/usr/local`;
 }
 
 
