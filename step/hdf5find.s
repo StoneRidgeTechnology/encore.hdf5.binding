@@ -19,7 +19,8 @@ catch( err )
 
 output = output.toString();
 
-let installation = path.resolve( output.trim(), '../..' )
+let installation = fs.realpathSync( output.trim() );
+installation = path.resolve( installation, '../..' )
 
 if( process.argv[ 2 ] === 'version' )
 {
