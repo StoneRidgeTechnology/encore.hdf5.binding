@@ -1,54 +1,38 @@
-
+#!/usr/bin/env node
 let cp = require( 'child_process' );
 let exec = cp.execSync;
 let path = require( 'path' );
 let fs = require( 'fs' );
 
-let which = process.platform === 'win32' ? 'where' : 'which';
-let binary = process.platform === 'win32' ? 'h5dump' : 'h5cc';
+function installationPathGet()
+{
+  let which = process.platform === 'win32' ? 'where' : 'which';
+  let binary = process.platform === 'win32' ? 'h5dump' : 'h5ccx';
 
-let output = null;
-try
-{
-  // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
-  output = exec( `${which} ${binary}`, { stdio : 'pipe' } );
-}
-catch( err )
-{
-  console.warn( `Failed to find hdf5 library installation. Reason:\n` + err.message );
-  installation = defaultPathGet();
-}
+  let output = null;
+  try
+  {
+    // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
+    output = exec( `${which} ${binary}`, { stdio : 'pipe' } );
+  }
+  catch( err )
+  {
+    return defaultPathGet();
+  }
 
-output = output.toString();
+  output = output.toString();
 
-let installation = fs.realpathSync( output.trim() );
-installation = path.resolve( installation, '../..' )
+  let installation = fs.realpathSync( output.trim() );
+  installation = path.resolve( installation, '../..' )
 
-if( process.platform === 'linux' )
-{
-  if( installation === '/usr' )
-  if( fs.existsSync( '/usr/lib/x86_64-linux-gnu/hdf5/serial' ) )
-  installation = '/usr/lib/x86_64-linux-gnu/hdf5/serial';
-}
+  if( process.platform === 'linux' )
+  {
+    if( installation === '/usr' )
+    if( fs.existsSync( '/usr/lib/x86_64-linux-gnu/hdf5/serial' ) )
+    installation = '/usr/lib/x86_64-linux-gnu/hdf5/serial';
+  }
 
-if( process.argv[ 2 ] === 'settings' )
-{
-  console.log( getSettings( installation ) );
-}
-else if( process.argv[ 2 ] === 'version' )
-{
-  let settings = getSettings( installation )
-  let version = /HDF5 Version:(.*)/.exec( settings )
-  console.log( version[ 0 ] );
-}
-else if( process.argv[ 2 ] === 'diagnostics' )
-{
-  console.log( `HDF5 Installation path: ${installation}` );
-  console.log( `\n${getSettings( installation )}` );
-}
-else
-{
-  console.log( installation );
+  return installation;
 }
 
 //
@@ -83,6 +67,38 @@ function defaultPathGet()
   else
   return `/usr/local`;
 }
+
+//
+
+if( typeof module !== 'undefined' && !module.parent )
+{
+  if( process.argv[ 2 ] === 'settings' )
+  {
+    console.log( getSettings( installation ) );
+  }
+  else if( process.argv[ 2 ] === 'version' )
+  {
+    let settings = getSettings( installation )
+    let version = /HDF5 Version:(.*)/.exec( settings )
+    console.log( version[ 0 ] );
+  }
+  else if( process.argv[ 2 ] === 'diagnostics' )
+  {
+    console.log( `HDF5 Installation path: ${installation}` );
+    console.log( `\n${getSettings( installation )}` );
+  }
+  else
+  {
+    console.log( installationPathGet() );
+  }
+}
+
+//
+
+module.exports =
+{
+  installationPathGet
+};
 
 
 

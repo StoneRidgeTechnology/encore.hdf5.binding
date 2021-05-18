@@ -1,8 +1,9 @@
 {
     "variables": {
-        "hdf5_home_linux%": '<!(node step/hdf5find.s)',
-        "hdf5_home_win%": '<!(node step/hdf5find.s)',
-        "hdf5_home_mac%": '<!(node step/hdf5find.s)',
+        "hdf5_home%": '<!(node step/hdf5find.s)',
+        "hdf5_home_linux%": '<(hdf5_home%)',
+        "hdf5_home_win%": '<(hdf5_home%)',
+        "hdf5_home_mac%": '<(hdf5_home%)',
 
         "link_type%": "shared",
         "debug_mode%": "",
