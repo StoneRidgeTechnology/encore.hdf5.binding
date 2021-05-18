@@ -18,6 +18,8 @@ about :
     install : 'node-pre-gyp install --update-binary --fallback-to-build'
     test : 'wtest .run test.test/**'
     clean : 'rm -rf build node_modules'
+    hdf5_where : 'node step/hdf5find.s'
+    hdf5_diagnostics : 'node step/hdf5find.s diagnostics'
 
 submodule:
   bindings:
