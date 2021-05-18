@@ -1,8 +1,10 @@
 {
     "variables": {
-        "hdf5_home_linux%": "/usr/local",
-        "hdf5_home_win%": "C:/Software/hdf5",
-        "hdf5_home_mac%": "/usr/local",
+        "hdf5_home" : '<!(node step/hdf5find.s)',
+        "hdf5_home_linux%": '<!($hdf5_home)',
+        "hdf5_home_win%": '<!($hdf5_home)',
+        "hdf5_home_mac%": '<!($hdf5_home)',
+
         "link_type%": "shared",
         "debug_mode%": "",
         "longlong_type%": "LONGLONG64BITS"
