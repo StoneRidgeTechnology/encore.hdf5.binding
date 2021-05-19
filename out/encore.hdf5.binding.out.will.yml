@@ -3,8 +3,8 @@ root:
   - encore.hdf5.binding.out
 consistency:
   ../will.yml: &ref_0
-    hash: 20e9d2adca6c43beb7ca64273c81e6d9
-    size: 7632
+    hash: 068b1e7339a7cf1dfb2a3c74b5f927f3
+    size: 7741
 module:
   encore.hdf5.binding.out:
     about:
@@ -27,6 +27,8 @@ module:
         install: node-pre-gyp install --update-binary --fallback-to-build
         test: wtest .run test.test/**
         clean: rm -rf build node_modules
+        hdf5_where: node step/hdf5find.s
+        hdf5_diagnostics: node step/hdf5find.s diagnostics
     path:
       module.willfiles:
         criterion:
@@ -136,7 +138,7 @@ module:
         path: '{path::out.*=}/source/Index.s'
       npm.js.entry:
         path:
-          - ../js/encore/hdf5/index.js
+          - ../js/encore/hdf5/entry/BindingMain.s
       repository:
         path: 'git+https://../github.com/Wandalen/encore.hdf5.binding.git'
       origins:
@@ -164,6 +166,12 @@ module:
           - ../js/encore/hdf5/globals.js
           - ../js/encore/hdf5/index.d.ts
           - ../js/encore/hdf5/index.js
+          - ../js/encore/hdf5/entry
+          - ../js/encore/hdf5/entry/BindingMain.s
+          - ../js/encore/hdf5/include
+          - ../js/encore/hdf5/include/Binding.s
+          - ../js/encore/hdf5/step
+          - ../js/encore/hdf5/step/hdf5find.s
           - ../js/encore/hdf5.test
           - ../js/encore/hdf5.test/Integration.test.ss
           - ../js/encore/hdf5.test/RunMochaTests.test.ss
@@ -834,7 +842,7 @@ module:
         path: '{path::out.*=}/source/Index.s'
       npm.js.entry:
         path:
-          - js/encore/hdf5/index.js
+          - js/encore/hdf5/entry/BindingMain.s
       repository:
         path: 'git+https://github.com/Wandalen/encore.hdf5.binding.git'
       origins:
@@ -1304,5 +1312,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 20e9d2adca6c43beb7ca64273c81e6d9
-        size: 7632
+        hash: 068b1e7339a7cf1dfb2a3c74b5f927f3
+        size: 7741
