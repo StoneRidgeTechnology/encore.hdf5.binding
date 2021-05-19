@@ -6,6 +6,7 @@ about :
   enabled : 1
   interpreters :
   - njs >= 10.0.0
+  org : srt
   license : MIT
   contributors :
   - 'Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)'
