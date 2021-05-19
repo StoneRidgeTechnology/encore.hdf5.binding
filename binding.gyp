@@ -1,6 +1,6 @@
 {
     "variables": {
-        "hdf5_home%": '<!(node step/hdf5find.s)',
+        "hdf5_home%": '<!(node js/encore/hdf5/step/hdf5find.s)',
         "hdf5_home_linux%": '<(hdf5_home%)',
         "hdf5_home_win%": '<(hdf5_home%)',
         "hdf5_home_mac%": '<(hdf5_home%)',
