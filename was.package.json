@@ -3,6 +3,7 @@
   "version" : "0.3.7",
   "description" : "Binding of HDF5",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
+  "org" : "srt",
   "main" : "./js/encore/hdf5/entry/BindingMain.s",
   "repository" :
   {
