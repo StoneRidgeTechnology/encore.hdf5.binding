@@ -9,8 +9,10 @@ This is [fork](https://github.com/HDF-NI/hdf5.node), which is created to provide
 ### Support
 
 Node versions:
-* v13
 * v14
+* v13
+* v12
+* v10
 
 HDF5 versions:
 * v1.10.x
@@ -86,7 +88,6 @@ log:
 [ 'group1' ]
 */
 
-group.close();
 file.close();
 
 ```
