@@ -2,7 +2,7 @@
   "name" : "encore.hdf5.binding",
   "version" : "0.3.7",
   "description" : "Binding of HDF5",
-  "main" : "./js/encore/hdf5/index.js",
+  "main" : "./js/encore/hdf5/entry/BindingMain.s",
   "repository" :
   {
     "type" : "git",
