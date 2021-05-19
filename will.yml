@@ -6,7 +6,6 @@ about :
   enabled : 1
   interpreters :
   - njs >= 10.0.0
-  author: Kostiantyn Wandalen <wanalen@01.school>
   org : srt
   license : MIT
   contributors :
