@@ -1,6 +1,6 @@
 {
   "name" : "encore.hdf5.binding",
-  "version" : "0.3.15",
+  "version" : "0.3.16",
   "description" : "Binding of HDF5",
   "org" : "srt",
   "main" : "./js/encore/hdf5/entry/BindingMain.s",
