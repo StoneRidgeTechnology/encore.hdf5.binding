@@ -63,9 +63,12 @@ jobs :
     - name : "Windows"
       if : matrix.os == 'windows-latest'
       run : |
-        conda install -y hdf5=1.10.7
+        $CONDA/bin/conda install -y hdf5=1.10.7
         npm install --longlong_type=LONGLONG53BITS
         npm test
+      shell : bash
+
+
     # - name : "Mac"
     #   if : matrix.os == 'macos-latest'
     #   run : |
