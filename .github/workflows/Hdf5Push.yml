@@ -18,7 +18,7 @@ jobs :
       fail-fast : false
       matrix :
         # os : [ ubuntu-latest, windows-latest, macos-latest ]
-        os : [ ubuntu-latest ]
+        os : [ ubuntu-latest, macos-latest ]
         node-version : [ 14.x ]
     if : "!startsWith( github.event.head_commit.message, 'version' ) && !startsWith( github.event.head_commit.message, '.' )"
     runs-on : ${{ matrix.os }}
@@ -73,3 +73,10 @@ jobs :
     #     npm install --longlong_type=LONGLONG53BITS --hdf5_home_mac=$HDF5_HOME_MAC
     #     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HDF5_HOME_MAC/lib
     #     npm test
+
+    - name : "Mac"
+      if : matrix.os == 'macos-latest'
+      run : |
+        brew install hdf5@1.10
+        npm install --longlong_type=LONGLONG53BITS
+        npm test
