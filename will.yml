@@ -19,8 +19,8 @@ about :
     install : 'node-pre-gyp install --update-binary --fallback-to-build'
     test : 'wtest .run test.test/**'
     clean : 'rm -rf build node_modules package-lock.json'
-    hdf5_where : 'node step/hdf5find.s'
-    hdf5_diagnostics : 'node step/hdf5find.s diagnostics'
+    hdf5_where : 'node js/encore/hdf5/step/hdf5find.s'
+    hdf5_diagnostics : 'node js/encore/hdf5/step/hdf5find.s diagnostics'
 
 submodule:
   bindings:
