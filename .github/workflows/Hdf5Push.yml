@@ -65,6 +65,7 @@ jobs :
       run : |
         C:\\Miniconda\\condabin\\conda.bat install -y hdf5=1.10.7
         npm install --longlong_type=LONGLONG53BITS
+        eval $(powershell -NonInteractive -Command 'write("export PATH=`"" + ([Environment]::GetEnvironmentVariable("PATH","Machine") + ";" + [Environment]::GetEnvironmentVariable("PATH","User")).replace("\","/").replace("C:","/c").replace(";",":") + ":`$PATH`"")');
         npm test
       shell : bash
 
