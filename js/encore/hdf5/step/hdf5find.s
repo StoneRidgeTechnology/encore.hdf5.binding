@@ -4,25 +4,38 @@ let exec = cp.execSync;
 let path = require( 'path' );
 let fs = require( 'fs' );
 
+
+
 function installationPathGet()
 {
   let which = process.platform === 'win32' ? 'where' : 'which';
-  let binary = process.platform === 'win32' ? 'h5dump' : 'h5ccx';
+  let binariesToTry = [ 'h5cc', 'h5c++', 'h5dump', 'h5ccx', 'h5ls', 'h5diff', 'h5copy', 'h5stat', 'h5debug', 'h5jam' ]
 
   let output = null;
-  try
+  let command = null;
+
+  for( let i = 0; i < binariesToTry.length; i++ )
   {
-    // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
-    output = exec( `${which} ${binary}`, { stdio : 'pipe' } );
-  }
-  catch( err )
-  {
-    return defaultPathGet();
+    try
+    {
+      // output = exec( 'h5cc -showconfig', { stdio : 'pipe' } );
+      command = `${which} ${binariesToTry[ i ]}`;
+      output = exec( command, { stdio : 'pipe' } );
+      break;
+    }
+    catch( err )
+    {
+    }
   }
 
-  output = output.toString();
+  debugger
 
-  let installation = fs.realpathSync( output.trim() );
+  if( !output )
+  return defaultPathGet();
+
+  output = output.toString().trim();
+
+  let installation = fs.realpathSync( output );
   installation = path.resolve( installation, '../..' )
 
   if( process.platform === 'linux' )
@@ -53,7 +66,6 @@ function getSettings( installation )
 
   let h5cc = path.join( installation, 'bin/h5cc' );
   let execPath = `${h5cc} -showconfig`;
-  console.log( `> ${execPath}` )
   let output = exec( execPath, { stdio : 'pipe' } );
   return output.toString();
 }
@@ -70,26 +82,40 @@ function defaultPathGet()
 
 //
 
+function versionsPrint()
+{
+  console.log( 'Node:', exec( 'node -v' ).toString().trim() );
+  console.log( 'Npm:', exec( 'npm -v' ).toString().trim() );
+}
+
+//
+
 if( typeof module !== 'undefined' && !module.parent )
 {
+
+  let installation = installationPathGet();
+
   if( process.argv[ 2 ] === 'settings' )
   {
+    versionsPrint();
     console.log( getSettings( installation ) );
   }
   else if( process.argv[ 2 ] === 'version' )
   {
+    versionsPrint();
     let settings = getSettings( installation )
     let version = /HDF5 Version:(.*)/.exec( settings )
     console.log( version[ 0 ] );
   }
   else if( process.argv[ 2 ] === 'diagnostics' )
   {
+    versionsPrint();
     console.log( `HDF5 Installation path: ${installation}` );
     console.log( `\n${getSettings( installation )}` );
   }
   else
   {
-    console.log( installationPathGet() );
+    console.log( installation );
   }
 }
 
