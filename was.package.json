@@ -22,7 +22,8 @@
     "install" : "node-gyp rebuild --jobs max",
     "test" : "wtest .run 'js/**' rapidity:-1",
     "hdf5_where" : "node step/hdf5find.s",
-    "hdf5_diagnostics" : "node step/hdf5find.s diagnostics"
+    "hdf5_diagnostics" : "node step/hdf5find.s diagnostics",
+    "clean" : "rm -rf build node_modules package-lock.json"
   },
   "contributors" :
   [
