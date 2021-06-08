@@ -17,8 +17,8 @@ jobs :
     strategy :
       fail-fast : false
       matrix :
-        # os : [ ubuntu-latest, windows-latest, macos-latest ]
-        os : [ ubuntu-latest, macos-latest ]
+        os : [ ubuntu-latest, windows-latest, macos-latest ]
+        # os : [ ubuntu-latest, macos-latest ]
         node-version : [ 14.x ]
     if : "!startsWith( github.event.head_commit.message, 'version' ) && !startsWith( github.event.head_commit.message, '.' )"
     runs-on : ${{ matrix.os }}
@@ -60,6 +60,12 @@ jobs :
     #     npm test
     #   shell : bash
 
+    - name : "Windows"
+      if : matrix.os == 'windows-latest'
+      run : |
+        conda install -y hdf5=1.10.7
+        npm install --longlong_type=LONGLONG53BITS
+        npm test
     # - name : "Mac"
     #   if : matrix.os == 'macos-latest'
     #   run : |
