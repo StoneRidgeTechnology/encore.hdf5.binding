@@ -60,11 +60,6 @@ jobs :
     #     npm test
     #   shell : bash
 
-    - name : "Setup"
-    - uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-
     - name : "Windows"
       if : matrix.os == 'windows-latest'
       run : |
