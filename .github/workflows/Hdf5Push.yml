@@ -60,10 +60,16 @@ jobs :
     #     npm test
     #   shell : bash
 
+    - name : "Setup conda"
+      if : matrix.os == 'windows-latest'
+      uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+
     - name : "Windows"
       if : matrix.os == 'windows-latest'
       run : |
-        $CONDA\\bin\\conda install -y hdf5=1.10.7
+        conda install -y hdf5=1.10.7
         npm install --longlong_type=LONGLONG53BITS
         npm test
       shell : bash
