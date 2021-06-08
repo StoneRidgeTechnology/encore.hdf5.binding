@@ -4,6 +4,7 @@
   "description" : "Binding of HDF5",
   "org" : "srt",
   "main" : "./js/encore/hdf5/entry/BindingMain.s",
+  "files" : [ "cpp", "binding.gyp", "js/encore/hdf5", "out" ],
   "repository" :
   {
     "type" : "git",
