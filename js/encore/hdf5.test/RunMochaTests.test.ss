@@ -17,6 +17,7 @@ const _ = _global_.wTools;
 const __ = _globals_.testing.wTools;
 const fileProvider = __.fileProvider;
 const path = fileProvider.path;
+const realCwd = process.cwd();
 
 // --
 // context
@@ -24,20 +25,20 @@ const path = fileProvider.path;
 
 function onSuiteBegin( test )
 {
-  // let context = this;
-  // context.provider = fileProvider;
-  // let path = context.provider.path;
-  // context.suiteTempPath = context.provider.path.tempOpen( path.join( __dirname, '../..' ), 'integration' );
+  let context = this;
+  context.provider = fileProvider;
+  let path = context.provider.path;
+  context.suiteTempPath = context.provider.path.tempOpen( path.join( __dirname, '../..' ), 'RunMochaTests' );
 }
 
 //
 
 function onSuiteEnd( test )
 {
-  // let context = this;
-  // let path = context.provider.path;
-  // __.assert( __.strHas( context.suiteTempPath, 'integration' ), context.suiteTempPath );
-  // path.tempClose( context.suiteTempPath );
+  let context = this;
+  let path = context.provider.path;
+  __.assert( __.strHas( context.suiteTempPath, 'RunMochaTests' ), context.suiteTempPath );
+  path.tempClose( context.suiteTempPath );
 }
 
 //
@@ -46,6 +47,11 @@ function attributes( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -56,6 +62,7 @@ function attributes( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -70,6 +77,11 @@ function filters( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -80,6 +92,7 @@ function filters( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -94,6 +107,11 @@ function h5ds( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -104,6 +122,7 @@ function h5ds( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -118,6 +137,11 @@ function h5im( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -128,6 +152,7 @@ function h5im( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -142,6 +167,11 @@ function h5lt( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -152,6 +182,7 @@ function h5lt( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -166,6 +197,11 @@ function h5pt( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -176,6 +212,7 @@ function h5pt( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -190,6 +227,11 @@ function h5tb( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -200,6 +242,7 @@ function h5tb( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -214,6 +257,11 @@ function hdf5( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -224,6 +272,7 @@ function hdf5( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -238,6 +287,11 @@ function swmr( test )
 {
   let context = this;
   let ready = __.Consequence();
+  let a = test.assetFor( false );
+
+  a.reflect();
+
+  process.chdir( a.fileProvider.path.nativize( a.abs( '.' ) ) );
 
   let Mocha = require( 'mocha' );
   var mocha = new Mocha();
@@ -248,6 +302,7 @@ function swmr( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
