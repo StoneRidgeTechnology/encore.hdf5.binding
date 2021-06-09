@@ -62,7 +62,7 @@ namespace NodeHDF5 {
 //      H5Tclose(arraytype_id);
       H5Tclose(type_id);
       H5Aclose(attr_id);
-      
+
     }
     else if(array->Length()>0 && array->Get(context, 0).ToLocalChecked()->IsObject() && std::strncmp("Uint64", (*v8::String::Utf8Value(isolate, array->Get(context, 0).ToLocalChecked()->ToObject(context).ToLocalChecked()->GetConstructorName())), 6)==0){
       hid_t type_id     =  H5Tcopy(H5T_NATIVE_UINT64);
@@ -86,7 +86,7 @@ namespace NodeHDF5 {
 //      H5Tclose(arraytype_id);
       H5Tclose(type_id);
       H5Aclose(attr_id);
-      
+
     }
     else{
     hid_t type_id     = H5Tcopy(H5T_C_S1);
@@ -325,7 +325,7 @@ namespace NodeHDF5 {
             H5Adelete(group->id, *v8::String::Utf8Value(isolate, name->ToString(context).ToLocalChecked()));
           }
           hid_t  attr_type = H5Tcopy(H5T_C_S1);
-          size_t s         = std::strlen(value.c_str());
+          size_t s         = std::strlen(value.c_str())+1;
           if (s) {
             H5Tset_size(attr_type, s);
           }
@@ -395,13 +395,13 @@ namespace NodeHDF5 {
           H5Aclose(attr_id);
 
         }
-        
+
       }
     }
 
     return;
   };
-  
+
     //void refreshAttributes(v8::Local<v8::Object>& focus, hid_t id)
-    
+
 }
