@@ -17,6 +17,7 @@ const _ = _global_.wTools;
 const __ = _globals_.testing.wTools;
 const fileProvider = __.fileProvider;
 const path = fileProvider.path;
+const realCwd = process.cwd();
 
 // --
 // context
@@ -61,6 +62,7 @@ function attributes( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -90,6 +92,7 @@ function filters( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -119,6 +122,7 @@ function h5ds( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -148,6 +152,7 @@ function h5im( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -177,6 +182,7 @@ function h5lt( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -206,6 +212,7 @@ function h5pt( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -235,6 +242,7 @@ function h5tb( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -264,6 +272,7 @@ function hdf5( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
@@ -293,6 +302,7 @@ function swmr( test )
 
   mocha.run( ( fails ) =>
   {
+    process.chdir( realCwd );
     test.case = 'test finished without fails';
     test.identical( fails, 0 );
     ready.take( fails )
