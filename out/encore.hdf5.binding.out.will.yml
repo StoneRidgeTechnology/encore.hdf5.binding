@@ -3,8 +3,8 @@ root:
   - encore.hdf5.binding.out
 consistency:
   ../will.yml: &ref_0
-    hash: cfb46cd183091e5064ead2ee3dedb918
-    size: 7753
+    hash: 4637d8448adeabd3d060b85fdab0d33b
+    size: 7801
 module:
   encore.hdf5.binding.out:
     about:
@@ -26,9 +26,9 @@ module:
       npm.scripts: &ref_3
         install: node-pre-gyp install --update-binary --fallback-to-build
         test: wtest .run test.test/**
-        clean: rm -rf build node_modules
-        hdf5_where: node step/hdf5find.s
-        hdf5_diagnostics: node step/hdf5find.s diagnostics
+        clean: rm -rf build node_modules package-lock.json
+        hdf5_where: node js/encore/hdf5/step/hdf5find.s
+        hdf5_diagnostics: node js/encore/hdf5/step/hdf5find.s diagnostics
     path:
       module.willfiles:
         criterion:
@@ -160,6 +160,7 @@ module:
           export: 1
         path:
           - ../js
+          - ../js/Integration.test.ss
           - ../js/encore
           - ../js/encore/hdf5
           - ../js/encore/hdf5/globals.d.ts
@@ -173,7 +174,6 @@ module:
           - ../js/encore/hdf5/step
           - ../js/encore/hdf5/step/hdf5find.s
           - ../js/encore/hdf5.test
-          - ../js/encore/hdf5.test/Integration.test.ss
           - ../js/encore/hdf5.test/RunMochaTests.test.ss
           - ../js/encore/hdf5.test/mocha
           - ../js/encore/hdf5.test/mocha/test_attributes.js
@@ -1312,5 +1312,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: cfb46cd183091e5064ead2ee3dedb918
-        size: 7753
+        hash: 4637d8448adeabd3d060b85fdab0d33b
+        size: 7801
