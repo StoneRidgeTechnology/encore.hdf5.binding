@@ -65,7 +65,7 @@ jobs :
         C:\\Miniconda\\condabin\\conda.bat install -y -c cctbx202105 hdf5
         $env:Path += ";C:\\Miniconda\\Library\\bin;C:\\Miniconda\\Library\\include;C:\\Miniconda\\Library\\lib;C:\\Miniconda\\Library\\share"
         npm install --longlong_type=LONGLONG53BITS
-        npm list || true
+        Invoke-Expression "npm list"
         npm test
       shell : powershell
 
