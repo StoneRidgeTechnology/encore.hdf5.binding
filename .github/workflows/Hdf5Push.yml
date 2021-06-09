@@ -17,8 +17,8 @@ jobs :
     strategy :
       fail-fast : false
       matrix :
-        # os : [ ubuntu-latest, windows-latest, macos-latest ]
-        os : [ ubuntu-latest ]
+        os : [ ubuntu-latest, windows-latest, macos-latest ]
+        # os : [ ubuntu-latest, macos-latest ]
         node-version : [ 14.x ]
     if : "!startsWith( github.event.head_commit.message, 'version' ) && !startsWith( github.event.head_commit.message, '.' )"
     runs-on : ${{ matrix.os }}
@@ -33,6 +33,7 @@ jobs :
       uses : actions/setup-node@v1
       with :
         node-version : ${{ matrix.node-version }}
+    - run : npm -g i willbe@stable
 
     - name : "Linux"
       if : matrix.os == 'ubuntu-latest'
@@ -59,6 +60,16 @@ jobs :
     #     npm test
     #   shell : bash
 
+    - name : "Windows"
+      if : matrix.os == 'windows-latest'
+      run : |
+        C:\\Miniconda\\condabin\\conda.bat install -y hdf5=1.10.7
+        npm install --longlong_type=LONGLONG53BITS
+        eval $(powershell -NonInteractive -Command 'write("export PATH=`"" + ([Environment]::GetEnvironmentVariable("PATH","Machine") + ";" + [Environment]::GetEnvironmentVariable("PATH","User")).replace("\","/").replace("C:","/c").replace(";",":") + ":`$PATH`"")');
+        npm test
+      shell : bash
+
+
     # - name : "Mac"
     #   if : matrix.os == 'macos-latest'
     #   run : |
@@ -73,3 +84,12 @@ jobs :
     #     npm install --longlong_type=LONGLONG53BITS --hdf5_home_mac=$HDF5_HOME_MAC
     #     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HDF5_HOME_MAC/lib
     #     npm test
+
+    - name : "Mac"
+      if : matrix.os == 'macos-latest'
+      run : |
+        brew install hdf5@1.10
+        export PATH=/usr/local/opt/hdf5@1.10/bin:$PATH
+        export DYLD_LIBRARY_PATH=/usr/local/opt/hdf5@1.10/lib:$DYLD_LIBRARY_PATH
+        npm install --longlong_type=LONGLONG53BITS
+        npm test
