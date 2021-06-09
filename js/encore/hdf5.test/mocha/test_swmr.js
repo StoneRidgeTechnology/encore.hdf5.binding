@@ -4,19 +4,19 @@
 require('should');
 
 const util = require('util');
-const hdf5Lib       = require('../../hdf5/index.js');
+const path          = require('path');
+const hdf5Lib 			= require(path.join(__dirname, '../../hdf5/index.js'));
+const globs   			= require(path.join(__dirname, '../../hdf5/globals'));
 
 const hdf5          = hdf5Lib.hdf5;
 const h5lt          = hdf5Lib.h5lt;
-
-const globs         = require('../../hdf5/globals.js');
 
 /*test inspired/brought from https://github.com/KirmTwinty work*/
 describe("testing hdf5 dataset reading in SWMR mode ", function(){
     describe("opening hdf5 dataset ", function(){
 	let file;
 	before(function(done){
-	    file = new hdf5Lib.hdf5.File('./js/encore/hdf5.test/mocha/examples/swmr-1.h5', globs.Access.ACC_RDONLY | globs.Access.ACC_SWMR_READ);
+	    file = new hdf5Lib.hdf5.File(path.join(__dirname,'examples/swmr-1.h5'), globs.Access.ACC_RDONLY | globs.Access.ACC_SWMR_READ);
 	    done();
 	});
 
