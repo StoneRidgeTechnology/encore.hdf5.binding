@@ -52,7 +52,6 @@ function stringAttributeLength( test )
   a.shell.predefined.sync = 1;
   let filePath = a.fileProvider.path.nativize( a.abs( 'test.h5' ) );
 
-
   /* */
 
   test.case = 'string attribute has expected size'
