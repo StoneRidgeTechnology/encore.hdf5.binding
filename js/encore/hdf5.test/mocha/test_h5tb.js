@@ -128,6 +128,11 @@ describe("testing table interface ",function(){
             group.close();
             done();
         });
+
+        after(function(done) {
+            file.close();
+            done();
+        });
     });
 
     describe("should read & modify table", function() {
