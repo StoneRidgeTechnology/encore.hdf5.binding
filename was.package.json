@@ -1,42 +1,44 @@
 {
-  "name" : "encore.hdf5.binding",
-  "version" : "0.3.23",
-  "description" : "Binding of HDF5",
-  "org" : "srt",
-  "main" : "./js/encore/hdf5/entry/BindingMain.s",
-  "files" : [ "cpp", "binding.gyp", "js/encore/hdf5", "out" ],
-  "repository" :
-  {
-    "type" : "git",
-    "url" : "https://github.com/Wandalen/encore.hdf5.binding.git"
+  "name": "encore.hdf5.binding",
+  "version": "0.3.24",
+  "description": "Binding of HDF5",
+  "org": "srt",
+  "main": "./js/encore/hdf5/entry/BindingMain.s",
+  "files": [
+    "cpp",
+    "binding.gyp",
+    "js/encore/hdf5",
+    "out"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/encore.hdf5.binding.git"
   },
-  "engines" : { "node" : ">=10.0.0" },
-  "devDependencies" :
-  {
-    "mocha" : "8.1.1",
-    "should" : "13.2.3",
-    "xml2js" : "0.4.23",
-    "wTesting" : ""
+  "engines": {
+    "node": ">=10.0.0"
   },
-  "scripts" :
-  {
-    "install" : "node-gyp rebuild --jobs max",
-    "test" : "wtest .run 'js/**' rapidity:-1",
-    "hdf5_where" : "node js/encore/hdf5/step/hdf5find.s",
-    "hdf5_diagnostics" : "node js/encore/hdf5/step/hdf5find.s diagnostics",
-    "clean" : "rm -rf build node_modules package-lock.json"
+  "devDependencies": {
+    "xml2js": "0.4.23",
+    "wTesting": "",
+    "should": "13.2.3",
+    "mocha": "8.1.1"
   },
-  "contributors" :
-  [
+  "scripts": {
+    "install": "node-gyp rebuild --jobs max",
+    "test": "wtest .run 'js/**' rapidity:-1",
+    "hdf5_where": "node js/encore/hdf5/step/hdf5find.s",
+    "hdf5_diagnostics": "node js/encore/hdf5/step/hdf5find.s diagnostics",
+    "clean": "rm -rf build node_modules package-lock.json"
+  },
+  "contributors": [
     "Ryan Cole <ryan@rycole.com> (https://github.com/ryancole/)",
     "Roger I Martin <mathmldashx@yahoo.com> (https://github.com/rimmartin/)",
     "Kostiantyn Wandalen <wanalen@01.school>",
     "Volodymyr M. <volodymyr.migdal@gmail.com>"
   ],
-  "license" : "MIT",
-  "keywords" : [],
-  "bugs" :
-  {
-    "url" : "https://github.com/Wandalen/encore.hdf5.binding/issues"
+  "license": "MIT",
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Wandalen/encore.hdf5.binding/issues"
   }
 }
