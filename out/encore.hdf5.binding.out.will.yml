@@ -3,8 +3,8 @@ root:
   - encore.hdf5.binding.out
 consistency:
   ../will.yml: &ref_0
-    hash: 4637d8448adeabd3d060b85fdab0d33b
-    size: 7801
+    hash: 9988c727815c2eca5f7cf58f56af3681
+    size: 7421
 module:
   encore.hdf5.binding.out:
     about:
@@ -438,9 +438,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -643,12 +640,6 @@ module:
           - 'step::doc.export'
         criterion:
           content: doc
-          export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
           export: 1
       export:
         steps:
@@ -1043,9 +1034,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -1249,12 +1237,6 @@ module:
         criterion:
           content: doc
           export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
-          export: 1
       export:
         steps:
           - 'build::js.export'
@@ -1313,5 +1295,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 4637d8448adeabd3d060b85fdab0d33b
-        size: 7801
+        hash: 9988c727815c2eca5f7cf58f56af3681
+        size: 7421
