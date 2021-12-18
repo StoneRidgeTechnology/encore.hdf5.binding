@@ -1,6 +1,6 @@
 {
   "name": "encore.hdf5.binding",
-  "version": "0.3.44",
+  "version": "0.3.45",
   "description": "Binding of HDF5",
   "org": "srt",
   "main": "./js/encore/hdf5/entry/BindingMain.s",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "xml2js": "0.4.23",
-    "wTesting": "delta",
+    "wTesting": "alpha",
     "should": "13.2.3",
     "mocha": "8.1.1"
   },
